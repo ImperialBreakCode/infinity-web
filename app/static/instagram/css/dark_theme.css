@@ -1,0 +1,64 @@
+:root{
+    --color-border-bottom: #2b2b2b;
+    --story-nav-color: #4f4f4f;
+    --back-color-block-noa: #161616;
+    --box-shadow-c-grey: #00000000;
+    --box-shadow-c-nv: #00000000;
+    --font-c-navbar: #c5c5c5;
+    --font-c-white: #ffffff;
+    --font-c-black: #ffffff;
+    --font-c-grey: grey;
+    --back-color-block: #100f13b4;
+    --color-bdn: #424242;
+    --color-border: #505050;
+    --color-btn-hover: #6b6b6b;
+    --color-input: #424242;
+    --color-input-hover-focus: #555555;
+    --color-input-buttons-hover: #666666;
+}
+
+.body-light{
+    background: linear-gradient(90deg,#1b1d22, #1b1d22);
+}
+
+.nv-light{
+    box-shadow: 0 0 0;
+    backdrop-filter: blur(30px);
+    background-color: var(--back-color-block);
+}
+
+.block-style{
+    background-color: var(--back-color-block);
+    border-radius: 17px;
+}
+
+svg{
+    filter: invert();
+}
+
+.dark-insta{
+    filter: invert();
+}
+
+.post-image img{
+    box-shadow: 0 0 0;
+}
+
+button{
+    color: white;
+}
+
+input{
+    color: white;
+}
+
+.story:hover{
+    box-shadow: 0 0 0;
+}
+
+@media (max-width: 992px){
+    .dropdown-dark{
+        box-shadow: 0 0 0;
+    }
+}
+

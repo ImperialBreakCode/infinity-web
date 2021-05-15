@@ -1,0 +1,20 @@
+{% extends 'instagram/instagram.html' %}
+
+{% block body %}
+
+    <main>
+
+        <div class="container d-flex align-items-center justify-content-center constr">
+            <div class="row ">
+                <div class="col">
+                    <div class="block-style under-constr">
+                        <img src="{{ url_for('static', filename='instagram/svg/builder_dark.svg') }}">
+                        <h3>{{ page }} page is not constructed yet</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+{% endblock %}

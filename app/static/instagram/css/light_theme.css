@@ -1,0 +1,33 @@
+:root{
+    --color-border-bottom: #d0d0d0;
+    --story-nav-color: #f1f1f1;
+    --back-color-block-noa: #e1e0ec;
+    --box-shadow-c-grey: grey;
+    --box-shadow-c-nv: #00000054;
+    --font-c-navbar: #272727;
+    --font-c-white: white;
+    --font-c-black: #000000;
+    --font-c-grey: grey;
+    --back-color-block: #f1f0ffb6;
+    --color-bdn: #bdbdbd;
+    --color-border: #5c5c5c;
+    --color-btn-hover: #9c9c9c;
+    --color-input: #c5c5c5;
+    --color-input-hover-focus: #a1a1a1;
+    --color-input-buttons-hover: #777777;
+}
+
+.body-light{
+    background: linear-gradient(90deg,#b5b9ff, #b9b9b9);
+}
+
+.nv-light{
+    backdrop-filter: blur(30px);
+    background-color: var(--back-color-block);
+}
+
+.block-style{
+    background-color: var(--back-color-block);
+    box-shadow: 0px 2px 20px 4px #929292;
+    border-radius: 17px;
+}

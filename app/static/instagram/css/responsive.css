@@ -1,0 +1,154 @@
+@media (max-width: 1570px){
+
+    .search-box{
+        width: 200px;
+    }
+
+    .search-box:focus{
+        width: 250px;
+    }
+}
+
+@media (max-width: 1399px){
+    .my-profile{
+        width: 261px;
+    }
+
+    .accounts{
+        width: 261px;
+    }
+
+    .accounts img{
+        margin-bottom: 5px;
+    }
+
+    .accounts-single{
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 17px;
+    }
+
+    .accounts-single-pos button{
+        top: 29.5px;
+    }
+
+    .search-icon{
+        background: var(--color-bdn);
+        position: relative;
+        padding: 12px 21px;
+        border-radius: 100%;
+        margin-right: 7px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .search-icon:hover{
+        background: var(--color-btn-hover);
+    }
+
+    .search-icon i{
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 20px;
+        font-family: 'Font Awesome 5 Pro';
+    }
+
+    .search-box{
+        display: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+    }
+
+    .nvg-link{
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 1199px){
+
+    .my-profile{
+        width: 295px;
+    }
+}
+
+@media (max-width: 991px){
+    .my-profile{
+        display: none;
+    }
+
+    #menu-btn{
+        display: inline-block;
+    }
+
+    .dropdown{
+        background-color: var(--back-color-block-noa);
+        border-radius: 17px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 20px var(--box-shadow-c-nv);
+        position: absolute;
+        bottom: -230px;
+        left: -10px;
+        text-align: center;
+    }
+
+    .nvg-link{
+        margin: 2px 0;
+    }
+
+    .nv-active:hover{
+        box-shadow: 0px 4px 20px 2px var(--box-shadow-c-grey);
+    }
+
+    .search-widen{
+        width: 30%!important;
+    }
+
+    #x-search{
+        left: 68%;
+    }
+}
+
+@media (max-width: 617px){
+    .story-nav{
+        display: none;
+    }
+
+    .show-sm-only{
+        display: inline-block;
+    }
+
+    .dropdown-prf{
+        bottom: -200px;
+    }
+
+    .dark-insta{
+        display: none;
+    }
+
+    #inner-nav{
+        padding: 0 10px;
+    }
+
+    .sm-mobile{
+        display: none;
+    }
+
+    .search-icon{
+        background-color: transparent;
+    }
+
+    .search-widen{
+        width: 50%!important;
+    }
+
+    #x-search{
+        left: 80%;
+    }
+}

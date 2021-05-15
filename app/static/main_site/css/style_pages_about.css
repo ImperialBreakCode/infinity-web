@@ -1,0 +1,38 @@
+.first-sec{
+    position: relative;
+    height: 80vh;
+    background: url("../images/code.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.first-sec span{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #0000009e;
+}
+
+.first-sec .container{
+    z-index: 2;
+}
+
+.second-sec{
+    background: #151515;
+    color: white;
+    padding: 100px 20%;
+}
+
+footer{
+    background: #151515;
+}
+
+@media (max-width: 991px) {
+    .second-sec{
+        padding: 100px 5%;
+    }
+}
+

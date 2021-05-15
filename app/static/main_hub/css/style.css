@@ -1,0 +1,172 @@
+html, body{
+   height: 100vh;
+   margin: 0;
+   padding: 0;
+   font-family: 'Biryani', sans-serif;
+   font-weight: 400;
+   scroll-behavior: smooth;
+}
+header{
+    background:linear-gradient(180deg,#000000b7,#0000003b), url("../images/casey-horner-9XRpNnTqdJE-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+p{
+    font-family: 'Montserrat', sans-serif;
+}
+.gradient{
+    background: linear-gradient(90deg, #0026ff, rgb(111, 0, 255));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 5px;
+}
+.first{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    flex-direction: column;
+}
+.sp{
+    display: flex;
+    justify-content: center;
+    height: 0;
+    padding: 96px;
+    position: relative;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.589);
+    color: #000000;
+    border-radius: 20px;
+    z-index: 2;
+    margin: 50px;
+    transition: cubic-bezier(0.54, 0.03, 0.14, 1.32);
+    transition-duration: 0.2s;
+    overflow: hidden;
+    cursor: pointer; 
+    backdrop-filter: blur(10px);
+}
+
+.sp p{
+    display: none;
+    position: absolute;
+    top: 72%;
+}
+.sp img{
+    position: absolute;
+    height: 140px;
+    top: 0;
+    opacity: 0;
+    transition: 0.2s;
+}
+.sp:hover p{
+    display: inline-block;
+}
+.sp:hover img{
+    opacity: 1;
+}
+.sp:hover .myic{
+    display: none;
+}
+.sp:hover{
+    box-shadow: 0px 5px 50px 0px #000000;
+    transform: translate(0, -44px);
+    padding-top: 140px;
+    padding-bottom: 140px;
+    background-color: #ffffff9a;
+    backdrop-filter: blur(2px);
+}
+.title{
+    text-transform: uppercase;
+    color: white;
+    margin-top: 30%;
+    margin-bottom: 30%;
+    font-size: 60px;
+    font-weight: 600;
+}
+.menu{
+    display: flex;
+    justify-content: center;
+}
+.menu2{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.h-menu{
+    position: absolute;
+    top: 60%;
+}
+.myic{
+    position: absolute;
+    transition: 0.2s;
+    top: 18%;
+}
+.p1{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    z-index: 100;
+}
+.p1:hover{
+    text-decoration: none;
+    color: white;
+}
+#back{
+    position: fixed;
+    background:linear-gradient(180deg,#000000b7,#0000003b), url("../images/casey-horner-9XRpNnTqdJE-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+#blur{
+    position: fixed;
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    transition: 0.5s;
+}
+@media (max-width:576px){
+    .menu{
+        flex-direction: column;
+    }
+    .p1{
+        opacity: 0;
+    }
+}
+@media (max-width:1170px){
+    .menu2{
+        flex-direction: column;
+    }
+    header{
+        height: auto;
+    }
+    .sp:hover{
+        transform: scale(1.1);
+        padding: 96px;
+        background-color: white;
+        box-shadow: 0 0 25px 0px rgb(0 0 0);
+    }
+
+    .sp:hover p{
+        display: none;
+    }
+
+    .sp:hover img{
+        opacity: 0;
+    }
+    .sp:hover .myic{
+        display: inline;
+    }
+    .p1{
+        opacity: 0;
+    }
+}

@@ -1,0 +1,57 @@
+{% extends 'main_site/main.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='main_site/css/style_pages_about.css') }}">
+{% endblock %}
+
+
+
+{% block main %}
+
+    <main>
+        <section class="first-sec d-flex justify-content-center align-items-center">
+            <span></span>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="mb-5">About</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mattis aliquet leo, id feugiat
+                            urna pretium ut. Curabitur nec enim a est imperdiet pulvinar. Suspendisse consequat
+                            hendrerit sagittis. Quisque molestie vehicula porta. Sed lacus augue, lobortis non lectus
+                            et, posuere aliquet tortor. Orci varius natoque penatibus et magnis dis parturient montes,
+                            nascetur ridiculus mus. Nam in augue condimentum, viverra elit sed, molestie dolor. Cras
+                            tempus purus eros, at dictum risus sagittis a. Sed id maximus est. Cras tempus velit feugiat
+                            quam iaculis, in volutpat arcu consequat. Donec vel nunc molestie, gravida mi a, elementum
+                            leo. Sed sodales molestie nisl eu efficitur.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="second-sec">
+            <div class="container">
+                <div class="row">
+                    <div class="col w-80">
+
+                        <h2 class="text-center mb-5">Contact</h2>
+
+                        <form>
+                            <div class="mb-3">
+                                <label for="formControlInput1" class="form-label">Title</label>
+                                <input type="email" class="form-control" id="formControlInput1"
+                                       placeholder="Title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formControlTextarea1" class="form-label">Message</label>
+                                <textarea class="form-control" id="formControlTextarea1" placeholder="Text..." rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mt-3">Send</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'main_site/main.html' %}
+
+
+{% block styles %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='main_site/css/style_pages_posts.css') }}">
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+    <main>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <button type="button" data-bs-toggle="collapse" id="filter-btn" aria-controls="form"
+                        class="btn btn-outline-danger mb-3 d-none w-100">Filters
+                    </button>
+                </div>
+
+                <div class="col d-flex justify-content-center">
+
+                    <form id="form" class="row row-cols-lg-auto g-3 align-items-center justify-content-center">
+                        <div class="col-12">
+                            <label for="post-type-select" class="form-label">Post types</label>
+                            <select id="post-type-select" class="form-select form-select-lg mb-3">
+                                <option selected>All</option>
+                                <option value="1">Images only</option>
+                                <option value="2">Text posts only</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="account-select" class="form-label">From account</label>
+                            <select id="account-select" class="form-select form-select-lg mb-3">
+                                <option selected>All</option>
+                                <option value="1">Wow This is account!!</option>
+                                <option value="2">WOOOW</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-danger btn-lg move-b">Get results</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+
+            <div class="row">
+                <div class="col pad-card">
+
+                    <div class="card text-white bg-dark mb-4">
+                        <div class="card-header text-center">
+                            Featured
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Special title treatment</h5>
+                            <p class="card-text mt-3">With supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <div class="text-center">
+                                <a href="#" class="btn btn-warning">Edit</a>
+                                <button class="delete-btn btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted text-center">
+                            2 days ago
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col pad-card">
+
+                    <div class="card text-white bg-dark mb-4">
+                        <img src="{{ url_for('static', filename='instagram/images/post1.jpg') }}" class="card-img-top" alt="post image">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='main_site/javascript/filter.js') }}"></script>
+{% endblock %}

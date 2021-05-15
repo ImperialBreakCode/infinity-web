@@ -1,0 +1,86 @@
+{% extends 'main_site/main.html' %}
+
+{% block main %}
+
+    <main>
+        <section class="render">
+            <h1>The Infinity Site</h1>
+            <i class="fas fa-angle-down"></i>
+        </section>
+
+        <section class="sec-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2>Infinity</h2>
+                        <p>Aenean sodales neque nisl, eget pellentesque orci porttitor sit amet. Curabitur ac lacus
+                            vitae ex ultrices fringilla. Suspendisse a dapibus neque. Praesent sodales erat sapien, ut
+                            commodo metus blandit non. Pellentesque habitant morbi tristique senectus et netus et
+                            malesuada fames ac turpis egestas. Donec in felis ligula. Pellentesque dolor felis,
+                            ullamcorper vel elementum a, convallis a quam.</p>
+                        <a href="{{ url_for('mainhub.main_home') }}">Back to Main Hub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec-2 sec-a">
+            <span></span>
+            <div class="container">
+                <div class="row">
+                    <div class="col d-none d-md-none d-lg-block"></div>
+                    <div class="col">
+                        <h2>Instagram</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sapien urna, venenatis suscipit
+                            ornare vitae, iaculis eget augue. Cras sed elit nec ipsum rhoncus placerat. Vivamus lacinia
+                            scelerisque elit, et.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec-button">
+            <div class="container">
+                <div class="row">
+                    <div class="col d-flex justify-content-center">
+                        <a href="{{ url_for('instagram.home') }}">Go to Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec-2 sec-b">
+            <span></span>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2>More about the site</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sapien urna, venenatis suscipit
+                            ornare vitae, iaculis eget augue. Cras sed elit nec ipsum rhoncus placerat. Vivamus lacinia
+                            scelerisque elit, et.</p>
+                    </div>
+                    <div class="col d-none d-md-none d-lg-block"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec-button button-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col d-flex justify-content-center">
+                        <a href="{{ url_for('mainSite.about') }}">Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r118/three.js"></script>
+    <script src="{{ url_for('static', filename='main_site/javascript/rend.js') }}" type="module"></script>
+
+{% endblock %}

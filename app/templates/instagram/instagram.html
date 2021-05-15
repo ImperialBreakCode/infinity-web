@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/website_icon.ico') }}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons/css_pro/pro.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons/css/all.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/main_style_nav_light.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/main_style_light.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/dark_theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/under_construction.css') }}">
+
+    {% if request.path.endswith(url_for('instagram.my_profile')) %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/my_profile.css') }}">
+    {% endif %}
+    <title>Instagram</title>
+</head>
+
+<body class="body-light">
+
+    <header>
+
+    <nav class="nvbar nv-light fixed-top">
+            <div id="inner-nav" class="position-relative d-flex justify-content-between align-items-center px-5">
+                <span>
+                    <a href="{{ url_for('instagram.home') }}" class="text-decoration-none">
+                        <img src="{{ url_for('static', filename='instagram/icons/inst_icon.png') }}" class="icn">
+                        <img class="dark-insta" src="{{ url_for('static', filename='instagram/icons/instagram_logo.png') }}">
+                    </a>
+                </span>
+                <span class="position-absolute top-50 start-50 translate-middle">
+                    <div class="nvg-menu">
+                        <button id="menu-btn" class="nvg-link">Menu <i class="far fa-angle-down mn"></i></button>
+                        <span id="drop" class="dropdown">
+                            <a href="{{ url_for('instagram.home') }}" class="nvg-link {% if url_for('instagram.home').endswith(request.path) %}nv-active{% endif %}">
+                                <span></span>Home</a>
+                            <a href="{{ url_for('instagram.explore') }}" class="nvg-link {% if url_for('instagram.explore').endswith(request.path) %}nv-active{% endif %}">
+                                <span></span>Explore</a>
+                            <a href="{{ url_for('instagram.reels') }}" class="nvg-link {% if url_for('instagram.reels').endswith(request.path) %}nv-active{% endif %}">
+                                <span></span>Reels</a>
+                            <a href="{{ url_for('instagram.shop') }}" class="nvg-link {% if url_for('instagram.shop').endswith(request.path) %}nv-active{% endif %}">
+                                <span></span>Shop</a>
+                        </span>
+                    </div>
+                </span>
+                <span>
+                    <span id="s-icon" class="search-icon">
+                        <i class="far fa-search"></i>
+                    </span>
+                    <input id="search" class="search-box mx-1" type="text" placeholder="Search">
+                    <i id="x-search" class="fal fa-times svg-style d-none"></i>
+                    <a class="text-decoration-none mx-1 sm-mobile" href="#"><i class="fal fa-heart svg-style"></i></a>
+                    <a class="mx-1 text-decoration-none sm-mobile" href="#">
+                        <svg aria-label="Direct" height="30" viewBox="0 7 54 54" width="25">
+                            <path
+                                d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z">
+                            </path>
+                        </svg>
+                    </a>
+
+                    <button id="prf-btn" class="prf-icon">
+                        <img src="{{ url_for('static', filename='instagram/images/prf_img5.jpeg') }}">
+                    </button>
+
+                    <span id="drop-prf" class="dropdown-prf d-none">
+                        <a href="{{ url_for('instagram.my_profile') }}">My Profile</a>
+                        <a href="#">Settings</a>
+                        <a class="show-sm-only" href="#">Notifications</a>
+                        <a class="show-sm-only" href="#">Direct</a>
+                        <a href="{{ url_for('mainhub.main_home') }}">Main Hub</a>
+                        <a href="#">Log out</a>
+                    </span>
+                </span>
+            </div>
+        </nav>
+
+    </header>
+
+    {% block body %}
+    {% endblock %}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='instagram/javascript/general.js') }}"></script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

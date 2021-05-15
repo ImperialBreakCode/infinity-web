@@ -1,0 +1,99 @@
+{% extends 'instagram/instagram.html' %}
+
+{% block body %}
+
+    <main class="main-dark">
+        <div class="profile-view">
+            <div class="profile">
+                <div class="first-sec">
+                    <img src="{{ url_for('static', filename='instagram/images/prf_img5.jpeg') }}">
+                    <h4>Account</h4>
+                    <p class="name-acc">name</p>
+                    <span class="profile-stats">
+                        <div>
+                            <button>
+                                <h5>0</h5>
+                                <p>Posts</p>
+                            </button>
+                            <button>
+                                <h5>0</h5>
+                                <p>Followers</p>
+                            </button>
+                            <button>
+                                <h5>0</h5>
+                                <p>Following</p>
+                            </button>
+                        </div>
+                        <a href="#" class="prf-btn">Edit Profile</a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="profile-links">
+                <div class="for-acc">
+                    <a href="#"><i class="far fa-paper-plane icon-l"></i>Direct</a>
+                    <a href="#"><i class="far fa-bookmark icon-l"></i>Saved</a>
+                    <a href="#"><i class="far fa-cog icon-l pi"></i>Settings</a>
+                </div>
+                <div class="nav-links">
+                    <a href="{{ url_for('instagram.home') }}"><i class="far fa-home-alt icon-l pi"></i>Home</a>
+                    <a href="{{ url_for('instagram.explore') }}"><i class="far fa-compass icon-l"></i>Explore</a>
+                    <a href="{{ url_for('instagram.reels') }}"><i class="fas fa-film icon-l"></i>Reels</a>
+                    <a href="{{ url_for('instagram.shop') }}"><i class="far fa-shopping-bag icon-l pi"></i>Shop</a>
+                </div>
+                <div class="logout">
+                    <a href="#"><i class="far fa-sign-out-alt icon-l pi"></i>Log out</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="posts block-style block-dark">
+            <div class="container">
+
+                <div class="row mb-5">
+                    <div class="col-4 center-post">
+                        <a href="#">
+                            <div class="posts-img"></div>
+                        </a>
+                    </div>
+                    <div class="col-4 center-post">
+                        <a href="#">
+                            <div class="posts-img"></div>
+                        </a>
+                    </div>
+                    <div class="col-4 center-post">
+                        <a href="#">
+                            <div class="posts-img"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-4 center-post">
+                        <a href="#">
+                            <div class="posts-img"></div>
+                        </a>
+                    </div>
+                    <div class="col-4 center-post">
+                        <a href="#">
+                            <div class="posts-img"></div>
+                        </a>
+                    </div>
+                    <div class="col-4 center-post">
+                        <a href="#">
+                            <div class="posts-img"></div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='instagram/javascript/dark_my_profile.js') }}"></script>
+{% endblock %}

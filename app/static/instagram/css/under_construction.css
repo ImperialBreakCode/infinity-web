@@ -1,0 +1,26 @@
+body, .constr{
+    height: calc(100vh - 78px);
+}
+
+.under-constr{
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+}
+
+.under-constr img{
+    margin-bottom: 50px;
+    height: 200px;
+}
+
+@media (max-width: 991px) {
+    .under-constr{
+        padding: 40px;
+    }
+}
+
+@media (max-width: 617px){
+    .under-constr{
+        padding: 20px;
+    }
+}
