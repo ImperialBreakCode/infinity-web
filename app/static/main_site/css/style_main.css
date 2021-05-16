@@ -254,6 +254,14 @@ footer p{
         transform: translate(-50%, -50%);
     }
 
+    .sec-a, sec-b{
+        background: none;
+    }
+
+    .sec-2:hover{
+        background-size: 100%;
+    }
+
     .sec-a span{
         background: #000421;
     }
@@ -278,9 +286,5 @@ footer p{
 @media (max-width: 727px) {
     .render h1{
         font-size: 80px;
-    }
-    
-    .render i{
-        animation: none;
     }
 }
