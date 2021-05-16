@@ -12,6 +12,8 @@ var composer;
 var mouseY = 0;
 var mouseX = 0;
 
+var animateActive = true;
+
 
 const alphamap = new THREE.TextureLoader().load( '../static/main_site/render/alpha_inf_iverted.jpg' );
 const normalmap = new THREE.TextureLoader().load('../static/main_site/render/NormalMap.png');
@@ -22,10 +24,14 @@ normalmap.repeat.set( 4, 4 );
 const starmap = new THREE.TextureLoader().load('../static/main_site/render/star3.png');
 
 
+setAnimateActive();
 init();
 
 
 $(window).resize(function(){
+	
+	
+    setAnimateActive();
 
     width = window.innerWidth;
     height = window.innerHeight;
@@ -201,5 +207,15 @@ function animation( time ) {
 
 	composer.render();
 
+}
+
+function setAnimateActive() {
+
+	if(window.innerWidth <= 991 && animateActive == true){
+		animateActive = false;
+	}
+	else if(window.innerWidth > 991 && animateActive == false){
+		animateActive = true;
+	}
 }
 
