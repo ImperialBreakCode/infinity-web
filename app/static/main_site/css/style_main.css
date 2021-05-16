@@ -279,4 +279,8 @@ footer p{
     .render h1{
         font-size: 80px;
     }
+    
+    .render i{
+        animation: none;
+    }
 }
