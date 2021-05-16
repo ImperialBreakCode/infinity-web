@@ -254,7 +254,7 @@ footer p{
         transform: translate(-50%, -50%);
     }
 
-    .sec-a, sec-b{
+    .sec-a, .sec-b{
         background: none;
     }
 
