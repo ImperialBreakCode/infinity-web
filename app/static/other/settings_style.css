@@ -1,0 +1,18 @@
+html, body{
+    margin: 0;
+    height: 100vh;
+    background: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    padding: 20px;
+}
+
+.col{
+    width: 500px;
+}
+
+h1{
+    margin-bottom: 70px;
+}

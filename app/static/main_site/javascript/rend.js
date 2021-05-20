@@ -24,14 +24,14 @@ normalmap.repeat.set( 4, 4 );
 const starmap = new THREE.TextureLoader().load('../static/main_site/render/star3.png');
 
 
+
 setAnimateActive();
 init();
 
 
 $(window).resize(function(){
-	
-	
-    setAnimateActive();
+
+	setAnimateActive();
 
     width = window.innerWidth;
     height = window.innerHeight;
@@ -196,16 +196,18 @@ function init() {
 
 function animation( time ) {
 
-	cube.rotation.x = time / 5000;
-	cube.rotation.y = time / 5000;
+	if (animateActive){
+		cube.rotation.x = time / 5000;
+		cube.rotation.y = time / 5000;
 
-	cube.rotation.x += (mouseY - cube.rotation.y) / 1000;
-	cube.rotation.y -= (mouseX - cube.rotation.x) / 1000;
+		cube.rotation.x += (mouseY - cube.rotation.y) / 1000;
+		cube.rotation.y -= (mouseX - cube.rotation.x) / 1000;
 
-	stars.position.x = -mouseX / 500;
-	stars.position.y = mouseY / 500;
+		stars.position.x = -mouseX / 500;
+		stars.position.y = mouseY / 500;
 
-	composer.render();
+		composer.render();
+	}
 
 }
 

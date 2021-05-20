@@ -16,3 +16,4 @@ def posts():
 @mains.route('/about')
 def about():
     return render_template('main_site/pages/main_site_about.html')
+

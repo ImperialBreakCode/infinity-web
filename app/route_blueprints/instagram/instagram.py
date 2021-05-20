@@ -28,4 +28,7 @@ def my_profile():
     return render_template('instagram/pages/my_profile.html')
 
 
+@instagram.route('/edit-profile/<from_site>')
+def edit_profile(from_site):
+    return render_template('others/edit-profile.html', from_site=from_site)
 

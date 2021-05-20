@@ -50,7 +50,7 @@ main{
     margin-bottom: 8%;
 }
 
-.name-acc{
+.bio-acc{
     color: var(--font-c-grey);
     margin: 0;
 }
@@ -133,6 +133,7 @@ main{
     padding: 5px 20px;
     border-radius: 50px;
     border: 1px solid transparent;
+    transition: 0.2s;
 }
 
 .icon-l{

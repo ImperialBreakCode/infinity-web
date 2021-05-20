@@ -2,13 +2,13 @@
 
 {% block body %}
 
-    <main class="main-dark">
+    <main class="main-light">
         <div class="profile-view">
             <div class="profile">
                 <div class="first-sec">
                     <img src="{{ url_for('static', filename='instagram/images/prf_img5.jpeg') }}">
                     <h4>Account</h4>
-                    <p class="name-acc">name</p>
+                    <p class="bio-acc">name</p>
                     <span class="profile-stats">
                         <div>
                             <button>
@@ -24,7 +24,7 @@
                                 <p>Following</p>
                             </button>
                         </div>
-                        <a href="#" class="prf-btn">Edit Profile</a>
+                        <a href="{{ url_for('instagram.edit_profile', from_site='edit') }}" class="prf-btn">Edit Profile</a>
                     </span>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="for-acc">
                     <a href="#"><i class="far fa-paper-plane icon-l"></i>Direct</a>
                     <a href="#"><i class="far fa-bookmark icon-l"></i>Saved</a>
-                    <a href="#"><i class="far fa-cog icon-l pi"></i>Settings</a>
+                    <a href="{{ url_for('other.settings', from_site='mprf') }}"><i class="far fa-cog icon-l pi"></i>Settings</a>
                 </div>
                 <div class="nav-links">
                     <a href="{{ url_for('instagram.home') }}"><i class="far fa-home-alt icon-l pi"></i>Home</a>
@@ -48,7 +48,7 @@
 
         </div>
 
-        <div class="posts block-style block-dark">
+        <div class="posts block-style block-light">
             <div class="container">
 
                 <div class="row mb-5">
@@ -95,5 +95,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ url_for('static', filename='instagram/javascript/dark_my_profile.js') }}"></script>
+    <script src="{{ url_for('static', filename='instagram/javascript/light_my_profile.js') }}"></script>
 {% endblock %}

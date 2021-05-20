@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='icons/css/all.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/main_style_nav_light.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/main_style_light.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/dark_theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/light_theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/under_construction.css') }}">
 
@@ -52,32 +52,42 @@
                     </div>
                 </span>
                 <span>
-                    <span id="s-icon" class="search-icon">
+                    {% if 0 > 5 %}
+
+                        <span id="s-icon" class="search-icon">
                         <i class="far fa-search"></i>
-                    </span>
-                    <input id="search" class="search-box mx-1" type="text" placeholder="Search">
-                    <i id="x-search" class="fal fa-times svg-style d-none"></i>
-                    <a class="text-decoration-none mx-1 sm-mobile" href="#"><i class="fal fa-heart svg-style"></i></a>
-                    <a class="mx-1 text-decoration-none sm-mobile" href="#">
-                        <svg aria-label="Direct" height="30" viewBox="0 7 54 54" width="25">
-                            <path
-                                d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z">
-                            </path>
-                        </svg>
-                    </a>
+                        </span>
+                        <input id="search" class="search-box mx-1" type="text" placeholder="Search">
+                        <i id="x-search" class="fal fa-times svg-style d-none"></i>
 
-                    <button id="prf-btn" class="prf-icon">
-                        <img src="{{ url_for('static', filename='instagram/images/prf_img5.jpeg') }}">
-                    </button>
+                        <a class="text-decoration-none mx-1 sm-mobile" href="#"><i class="fal fa-heart svg-style"></i></a>
+                        <a class="mx-1 text-decoration-none sm-mobile" href="#">
+                            <svg aria-label="Direct" height="30" viewBox="0 7 54 54" width="25">
+                                <path
+                                    d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z">
+                                </path>
+                            </svg>
+                        </a>
 
-                    <span id="drop-prf" class="dropdown-prf d-none">
-                        <a href="{{ url_for('instagram.my_profile') }}">My Profile</a>
-                        <a href="#">Settings</a>
-                        <a class="show-sm-only" href="#">Notifications</a>
-                        <a class="show-sm-only" href="#">Direct</a>
-                        <a href="{{ url_for('mainhub.main_home') }}">Main Hub</a>
-                        <a href="#">Log out</a>
-                    </span>
+                        <button id="prf-btn" class="prf-icon">
+                            <img src="{{ url_for('static', filename='instagram/images/prf_img5.jpeg') }}">
+                        </button>
+
+                        <span id="drop-prf" class="dropdown-prf d-none">
+                            <a href="{{ url_for('instagram.my_profile') }}">My Profile</a>
+                            <a href="{{ url_for('other.settings', from_site='is') }}">Settings</a>
+                            <a class="show-sm-only" href="#">Notifications</a>
+                            <a class="show-sm-only" href="#">Direct</a>
+                            <a href="{{ url_for('mainhub.main_home') }}">Main Hub</a>
+                            <a href="#">Log out</a>
+                        </span>
+
+                    {% else %}
+
+                        <a class="prf-btn sign-in-btn" href="{{ url_for('auth.login') }}">Sign in</a>
+
+                    {% endif %}
+
                 </span>
             </div>
         </nav>

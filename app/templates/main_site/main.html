@@ -45,30 +45,42 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                account@wow
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Main hub</a></li>
-                                <li><a class="dropdown-item" href="#">Instagram</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Log out</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <button id="cr-btn" class="create-btn"><i class="fas fa-plus"></i> Create</button>
-                        </li>
-                        <li class="position-relative">
-                            <div id="dr-btn" class="drop">
-                                <a href="#">Article</a>
-                                <a href="#">Instagram post</a>
-                            </div>
-                        </li>
+
+                        {% if 0 > 5 %}
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    account@wow
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ url_for('other.settings', from_site='main') }}">Settings</a></li>
+                                    <li><a class="dropdown-item" href="#">Main hub</a></li>
+                                    <li><a class="dropdown-item" href="#">Instagram</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Log out</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <button id="cr-btn" class="create-btn"><i class="fas fa-plus"></i> Create</button>
+                            </li>
+                            <li class="position-relative">
+                                <div id="dr-btn" class="drop">
+                                    <a href="#">Article</a>
+                                    <a href="#">Instagram post</a>
+                                </div>
+                            </li>
+
+                        {% else %}
+
+                            <li class="nav-item">
+                                <a href="{{ url_for('auth.login') }}" class="create-btn sign-in-link">Sing in</a>
+                            </li>
+
+                        {% endif %}
+
                     </ul>
                 </div>
             </div>

@@ -16,6 +16,13 @@
     --color-input-buttons-hover: #777777;
 }
 
+.inst-log-right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .mn{
     font-family: 'Font Awesome 5 Pro';
 }
@@ -192,6 +199,11 @@ main{
     flex-direction: row;
 }
 
+.post-header button{
+    border: none;
+    background: transparent;
+}
+
 .post-action-btn{
     margin: 8px;
     cursor: pointer;
@@ -323,6 +335,10 @@ main{
     color: var(--font-c-black);
     background: var(--color-btn-hover);
     border: 2px solid var(--color-border);
+}
+
+.sign-in-btn{
+    padding: 10px 20px;
 }
 
 .my-profile-btn{

@@ -24,6 +24,19 @@ footer p{
     border-radius: 3px;
     background-color: red;
     color: white;
+    transition: 0.3s;
+}
+
+.create-btn:hover{
+    background-color: #d20000;
+}
+
+.sign-in-link{
+    text-decoration: none;
+}
+
+.sign-in-link:hover{
+    color: white;
 }
 
 .drop{

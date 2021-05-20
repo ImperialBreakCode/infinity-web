@@ -1,0 +1,23 @@
+.login{
+    height: 400px;
+}
+
+.login p{
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+.login a{
+    text-decoration: none;
+    padding: 15px 70px;
+}
+
+.login a:hover{
+    color: white;
+}
+
+@media (max-width: 599px) {
+    .login{
+        height: 100vh;
+    }
+}
