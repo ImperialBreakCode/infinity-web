@@ -5,27 +5,27 @@ instagram = Blueprint('instagram', __name__, template_folder='templates', url_pr
 
 @instagram.route('/')
 def home():
-    return render_template('instagram/pages/home.html')
+    return render_template('instagram/pages/home.html', title='')
 
 
 @instagram.route('/explore')
 def explore():
-    return render_template('instagram/pages/under_construction.html', page='Explore')
+    return render_template('instagram/pages/under_construction.html', page='Explore', title=' • Explore')
 
 
 @instagram.route('/reels')
 def reels():
-    return render_template('instagram/pages/under_construction.html', page='Reels')
+    return render_template('instagram/pages/under_construction.html', page='Reels', title=' • Reels')
 
 
 @instagram.route('/shop')
 def shop():
-    return render_template('instagram/pages/under_construction.html', page='Shop')
+    return render_template('instagram/pages/under_construction.html', page='Shop', title=' • Shop')
 
 
 @instagram.route('/my-profile')
 def my_profile():
-    return render_template('instagram/pages/my_profile.html')
+    return render_template('instagram/pages/my_profile.html', title=' • My Profile')
 
 
 @instagram.route('/edit-profile/<from_site>')

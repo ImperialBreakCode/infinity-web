@@ -83,4 +83,8 @@ body{
         height: 100vh;
         border-radius: 0;
     }
+
+    .col{
+        padding: 0;
+    }
 }

@@ -21,7 +21,7 @@
     {% if request.path.endswith(url_for('instagram.my_profile')) %}
         <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/my_profile.css') }}">
     {% endif %}
-    <title>Instagram</title>
+    <title>Instagram {{ title }}</title>
 </head>
 
 <body class="body-light">

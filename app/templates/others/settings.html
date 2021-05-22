@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='other/settings_style.css') }}">
-    <title>Settings</title>
+    <title>Account settings</title>
 </head>
 <body>
 
@@ -55,13 +55,21 @@
 
             <div class="border border-secondary rounded-3 p-4">
                 <form>
+                     <div class="mb-4">
+                         <h5>Dark theme</h5>
+                         <div class="form-check form-switch">
+                             <input class="form-check-input" type="checkbox" id="dark-check">
+                             <label class="form-check-label" for="dark-check">Dark theme</label>
+                         </div>
+                         <p>Dark theme will be applied only the instagram pages.</p>
+                    </div>
                     <div class="mb-4">
-                        <h5>Instagram profile page</h5>
+                        <h5>Instagram profile</h5>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="private-profile-check">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Private profile page</label>
+                            <label class="form-check-label" for="private-profile-check">Private profile</label>
                         </div>
-                        <p>When your profile is private it will be only visible to users who have accounts.</p>
+                        <p>When you are private your profile and posts will be only visible to users who have accounts.</p>
                     </div>
                     <div class="mb-4">
                         <h5>Instagram posts</h5>
