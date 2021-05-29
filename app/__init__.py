@@ -20,7 +20,7 @@ def create_app():
     # configuring app
     app.config.from_mapping(
         SECRET_KEY='a55dzssftnnvd88er;,iuijkjyuiyui',
-        SQLALCHEMY_DATABASE_URI='postgres://bmtgzpwbkqrijw:6e0f0a305dba66ddf05e48120887fe3d8b41b884d2b1e5c727dc814640ba311d@ec2-3-212-75-25.compute-1.amazonaws.com:5432/da60litc8116en',
+        SQLALCHEMY_DATABASE_URI='postgresql://bmtgzpwbkqrijw:6e0f0a305dba66ddf05e48120887fe3d8b41b884d2b1e5c727dc814640ba311d@ec2-3-212-75-25.compute-1.amazonaws.com:5432/da60litc8116en',
         SQLALCHEMY_TRACK_MODIFICATIONS=False
     )
 
