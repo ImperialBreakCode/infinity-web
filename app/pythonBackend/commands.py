@@ -25,3 +25,9 @@ def create_su():
         print('done')
     else:
         print('already exists')
+
+
+@bp_command.cli.command('tb-create')
+def create_tables():
+    db.create_all()
+    print('created tables')
