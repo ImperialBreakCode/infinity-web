@@ -84,6 +84,6 @@ form.addEventListener('submit', function (event){
             else {
                 location.replace("/instagram/my-profile")
             }
-        }, 3000)
+        }, 2000)
     }
 })
