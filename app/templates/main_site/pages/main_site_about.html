@@ -1,5 +1,7 @@
 {% extends 'main_site/main.html' %}
 
+{% from 'main_site/macros/_form_helpers.html' import contactForm %}
+
 {% block styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename='main_site/css/style_pages_about.css') }}">
 {% endblock %}
@@ -35,18 +37,7 @@
 
                         <h2 class="text-center mb-5">Contact</h2>
 
-                        <form>
-                            <div class="mb-3">
-                                <label for="formControlInput1" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="formControlInput1"
-                                       placeholder="Title">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formControlTextarea1" class="form-label">Message</label>
-                                <textarea class="form-control" id="formControlTextarea1" placeholder="Text..." rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 mt-3">Send</button>
-                        </form>
+                        {{ contactForm(contact_form) }}
 
                     </div>
                 </div>

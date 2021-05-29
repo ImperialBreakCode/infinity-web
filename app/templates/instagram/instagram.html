@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/under_construction.css') }}">
 
-    {% if request.path.endswith(url_for('instagram.my_profile')) %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/my_profile.css') }}">
-    {% endif %}
+    {% block css_head %}
+    {% endblock %}
+
     <title>Instagram {{ title }}</title>
 </head>
 
@@ -52,7 +52,7 @@
                     </div>
                 </span>
                 <span>
-                    {% if 0 > 5 %}
+                    {% if logged %}
 
                         <span id="s-icon" class="search-icon">
                         <i class="far fa-search"></i>
@@ -79,7 +79,7 @@
                             <a class="show-sm-only" href="#">Notifications</a>
                             <a class="show-sm-only" href="#">Direct</a>
                             <a href="{{ url_for('mainhub.main_home') }}">Main Hub</a>
-                            <a href="#">Log out</a>
+                            <a href="{{ url_for('auth.logout') }}">Log out</a>
                         </span>
 
                     {% else %}

@@ -81,10 +81,24 @@ p{
     text-transform: uppercase;
     color: white;
     margin-top: 30%;
-    margin-bottom: 30%;
     font-size: 60px;
     font-weight: 600;
+    margin-bottom: 30%;
+    text-align: center;
 }
+
+.custom-al{
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 100%;
+}
+
+.r1 h3{
+    color: white;
+    text-align: center;
+}
+
 .menu{
     display: flex;
     justify-content: center;

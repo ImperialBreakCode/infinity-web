@@ -1,0 +1,40 @@
+{% macro filter(form) %}
+
+    <form id="form" method="POST" action="{{ url_for('mainSite.posts') }}"
+          class="row row-cols-lg-auto g-3 align-items-center justify-content-center">
+
+        {{ form.csrf_token }}
+
+        <div class="col-12">
+            <label for="{{ form.post_types.id }}" class="form-label">{{ form.post_types.label.text }}</label>
+            {{ form.post_types }}
+        </div>
+        <div class="col-12">
+            <label for="{{ form.account_post.id }}" class="form-label">{{ form.account_post.label.text }}</label>
+            {{ form.account_post }}
+        </div>
+        <div class="col-12">
+            {{ form.get_results }}
+        </div>
+    </form>
+
+{% endmacro %}
+
+
+
+{% macro contactForm(form) %}
+
+    <form method="POST" action="{{ url_for('mainSite.about') }}">
+        {{ form.csrf_token }}
+        <div class="mb-3">
+            <label for="{{ form.title.id }}" class="form-label">{{ form.title.label.text }}</label>
+            {{ form.title }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.message.id }}" class="form-label">{{ form.message.label.text }}</label>
+            {{ form.message }}
+        </div>
+        {{ form.send_button }}
+    </form>
+
+{% endmacro %}

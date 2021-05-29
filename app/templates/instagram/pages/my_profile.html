@@ -1,14 +1,18 @@
 {% extends 'instagram/instagram.html' %}
 
+{% block css_head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/my_profile.css') }}">
+{% endblock %}
+
 {% block body %}
 
     <main class="main-light">
         <div class="profile-view">
             <div class="profile">
                 <div class="first-sec">
-                    <img src="{{ url_for('static', filename='instagram/images/prf_img5.jpeg') }}">
-                    <h4>Account</h4>
-                    <p class="bio-acc">name</p>
+                    <img src="data:{{ user.profile_pic.mime_type }};base64,{{ user.profile_pic.image }}">
+                    <h4>{{ user.name }}</h4>
+                    <p class="bio-acc">{{ user.bio }}</p>
                     <span class="profile-stats">
                         <div>
                             <button>
@@ -16,34 +20,58 @@
                                 <p>Posts</p>
                             </button>
                             <button>
-                                <h5>0</h5>
+                                {% with followers = user.followers %}
+                                    {% if followers >= 1000000 %}
+                                        <h5>{{ math.floor(followers / 1000000) }}M</h5>
+                                    {% elif followers >= 10000 %}
+                                        <h5>{{ math.floor(followers / 1000) }}K</h5>
+                                    {% else %}
+                                        <h5>{{ followers }}</h5>
+                                    {% endif %}
+                                {% endwith %}
                                 <p>Followers</p>
                             </button>
                             <button>
-                                <h5>0</h5>
+                                {% with following = user.following %}
+                                    {% if following >= 1000000 %}
+                                        <h5>{{ math.floor(following / 1000000) }}M</h5>
+                                    {% elif following >= 10000 %}
+                                        <h5>{{ math.floor(following / 1000) }}K</h5>
+                                    {% else %}
+                                        <h5>{{ following }}</h5>
+                                    {% endif %}
+                                {% endwith %}
                                 <p>Following</p>
                             </button>
                         </div>
-                        <a href="{{ url_for('instagram.edit_profile', from_site='edit') }}" class="prf-btn">Edit Profile</a>
+                        {% if user == current_user %}
+                            <a href="{{ url_for('instagram.edit_profile') }}" class="prf-btn">Edit Profile</a>
+                        {% elif user != current_user and logged %}
+                            <button class="follow-btn">Follow</button>
+                        {% endif %}
                     </span>
                 </div>
             </div>
 
             <div class="profile-links">
-                <div class="for-acc">
-                    <a href="#"><i class="far fa-paper-plane icon-l"></i>Direct</a>
-                    <a href="#"><i class="far fa-bookmark icon-l"></i>Saved</a>
-                    <a href="{{ url_for('other.settings', from_site='mprf') }}"><i class="far fa-cog icon-l pi"></i>Settings</a>
-                </div>
+                {% if user == current_user %}
+                    <div class="for-acc">
+                        <a href="#"><i class="far fa-paper-plane icon-l"></i>Direct</a>
+                        <a href="#"><i class="far fa-bookmark icon-l"></i>Saved</a>
+                        <a href="{{ url_for('other.settings', from_site='mprf') }}"><i class="far fa-cog icon-l pi"></i>Settings</a>
+                    </div>
+                {% endif %}
                 <div class="nav-links">
                     <a href="{{ url_for('instagram.home') }}"><i class="far fa-home-alt icon-l pi"></i>Home</a>
                     <a href="{{ url_for('instagram.explore') }}"><i class="far fa-compass icon-l"></i>Explore</a>
                     <a href="{{ url_for('instagram.reels') }}"><i class="fas fa-film icon-l"></i>Reels</a>
                     <a href="{{ url_for('instagram.shop') }}"><i class="far fa-shopping-bag icon-l pi"></i>Shop</a>
                 </div>
-                <div class="logout">
-                    <a href="#"><i class="far fa-sign-out-alt icon-l pi"></i>Log out</a>
-                </div>
+                {% if user == current_user %}
+                    <div class="logout">
+                        <a href="{{ url_for('auth.logout') }}"><i class="far fa-sign-out-alt icon-l pi"></i>Log out</a>
+                    </div>
+                {% endif %}
             </div>
 
         </div>

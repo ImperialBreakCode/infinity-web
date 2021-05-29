@@ -1,0 +1,79 @@
+{% macro edit_form(form, image) %}
+
+    <h1 class="mb-3">Edit Profile</h1>
+
+    <form method="POST" action="" name="s-e-form" enctype="multipart/form-data">
+
+        {{ form.csrf_token }}
+
+        <img id="sample" class="mb-4" src="data:{{ image.mime_type }};base64,{{ image.image }}">
+        <div class="mb-4">
+            <label for="{{ form.image_upload.id }}" class="form-label">{{ form.image_upload.label.text }}</label>
+            {{ form.image_upload }}
+        </div>
+        <div class="mb-4 form-w">
+            <label for="{{ form.name.id }}" class="form-label">{{ form.name.label.text }}</label>
+            {{ form.name }}
+        </div>
+        <div class="row g-3 mb-4">
+            <div class="col">
+                <label for="{{ form.followers.id }}" class="form-label">{{ form.followers.label.text }}</label>
+                {{ form.followers }}
+            </div>
+            <div class="col">
+                <label for="{{ form.following.id }}" class="form-label">{{ form.following.label.text }}</label>
+                {{ form.following }}
+            </div>
+        </div>
+        <div class="mb-3 form-w">
+            <label for="{{ form.bio.id }}" class="form-label">{{ form.bio.label.text }}</label>
+            {{ form.bio }}
+        </div>
+        <div>
+            {{ form.save_button }}
+            <a id="cancel-btn" href="{{ url_for('instagram.my_profile') }}"
+               class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+
+{% endmacro %}
+
+
+
+{% macro setup_form(form, image) %}
+
+    <h1 class="mb-3">Setup your account</h1>
+
+    <form method="POST" action="{{ url_for('other.setup_account') }}" name="s-e-form" enctype="multipart/form-data">
+
+        {{ form.csrf_token }}
+
+        <img id="sample" class="mb-4" src="data:{{ image.mime_type }};base64,{{ image.image }}">
+        <div class="mb-4">
+            <label for="{{ form.image_upload.id }}" class="form-label">{{ form.image_upload.label.text }}</label>
+            {{ form.image_upload }}
+        </div>
+        <div class="mb-4 form-w">
+            <label for="{{ form.name.id }}" class="form-label">{{ form.name.label.text }}</label>
+            {{ form.name }}
+        </div>
+        <div class="row g-3 mb-4">
+            <div class="col">
+                <label for="{{ form.followers.id }}" class="form-label">{{ form.followers.label.text }}</label>
+                {{ form.followers }}
+            </div>
+            <div class="col">
+                <label for="{{ form.following.id }}" class="form-label">{{ form.following.label.text }}</label>
+                {{ form.following }}
+            </div>
+        </div>
+        <div class="mb-3 form-w">
+            <label for="{{ form.bio.id }}" class="form-label">{{ form.bio.label.text }}</label>
+            {{ form.bio }}
+        </div>
+        <div>
+            {{ form.save_button }}
+        </div>
+    </form>
+
+{% endmacro %}

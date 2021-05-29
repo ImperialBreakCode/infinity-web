@@ -295,7 +295,7 @@ main{
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 132px;
+    padding: 0 10px;
     text-decoration: none;
     color: var(--font-c-black);
     border-radius: 17px;

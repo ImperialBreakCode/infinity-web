@@ -1,0 +1,51 @@
+{% macro article(title, content, account) %}
+
+     <div class="row">
+         <div class="col pad-card">
+
+             <div class="card text-white bg-dark mb-4">
+                 <div class="card-header text-center">
+                     Made by: {{ account }}
+                 </div>
+                 <div class="card-body">
+                     <h5 class="card-title text-center mb-4">{{ title }}</h5>
+                     <p class="card-text mt-3">{{ content }}</p>
+
+                     {% if 6 < 5 %}
+
+                     <div class="text-center">
+                         <a href="#" class="btn btn-warning">Edit</a>
+                         <button class="delete-btn btn btn-danger">Delete</button>
+                     </div>
+
+                     {% endif %}
+                 </div>
+                 <div class="card-footer text-muted text-center">
+                     2 days ago
+                 </div>
+             </div>
+
+         </div>
+     </div>
+
+{% endmacro %}
+
+
+
+{% macro inst_post(title, account) %}
+
+    <div class="row">
+        <div class="col pad-card">
+
+            <div class="card text-white bg-dark mb-4">
+                <img src="{{ url_for('static', filename='instagram/images/post1.jpg') }}" class="card-img-top" alt="post image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ title }}</h5>
+                    <p class="card-text"><small class="text-muted">uploaded {{ account }}</small></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endmacro %}

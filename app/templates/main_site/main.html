@@ -46,21 +46,21 @@
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">
 
-                        {% if 0 > 5 %}
+                        {% if logged %}
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    account@wow
+                                    {{ current_user.email }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="{{ url_for('other.settings', from_site='main') }}">Settings</a></li>
-                                    <li><a class="dropdown-item" href="#">Main hub</a></li>
-                                    <li><a class="dropdown-item" href="#">Instagram</a></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('mainhub.main_home') }}">Main hub</a></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('instagram.home') }}">Instagram</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Log out</a></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
