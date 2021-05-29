@@ -47,7 +47,7 @@ def def_image(email):
     with open('app/pythonBackend/images/profile_def.jpg', 'rb') as image:
         data = base64.b64encode(image.read())
         data = data.decode('UTF-8')
-        profile_img = UserProfilePic(image=data, img_name='default_user{0}.jpg'.format(email.split('@')[0]), mime_type='image/jpeg')
+        profile_img = UserProfilePic(image=data, img_name='default_user.jpg', mime_type='image/jpeg')
         return profile_img
 
 
