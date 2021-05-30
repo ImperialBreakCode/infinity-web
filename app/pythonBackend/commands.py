@@ -2,6 +2,7 @@ from flask import Blueprint
 
 from .. import db
 from .models import User, def_image
+import datetime
 
 
 bp_command = Blueprint('acc-cmd', __name__)
@@ -13,7 +14,7 @@ def create_su():
     password = 'georgia123'
 
     if User.query.filter_by(email=email).first() is None:
-        super_user = User(email=email, password=password, admin=True, set=False)
+        super_user = User(email=email, password=password, admin=True, set=False, created_at=datetime.datetime.now())
         db.session.add(super_user)
 
         prf_pic = def_image(super_user.id)

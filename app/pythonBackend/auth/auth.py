@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
+import datetime
 
 from .auth_forms import LogInForm, RegisterForm
 from ..models import User, def_image
@@ -53,7 +54,8 @@ def register():
         new_user = User(email=email,
                         password=password,
                         admin=admin,
-                        set=False
+                        set=False,
+                        created_at=datetime.datetime.now()
                         )
         db.session.add(new_user)
 

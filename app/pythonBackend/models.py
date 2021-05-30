@@ -1,6 +1,5 @@
 from flask_login import UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from werkzeug.utils import secure_filename
 import base64
 
 from .. import db, login_manager
@@ -18,6 +17,7 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.Text, nullable=True)
     followers = db.Column(db.Integer)
     following = db.Column(db.Integer)
+    created_at = db.Column(db.String(50), nullable=False)
 
     @property
     def password(self):
@@ -47,19 +47,22 @@ def def_image(email):
     with open('app/pythonBackend/images/profile_def.jpg', 'rb') as image:
         data = base64.b64encode(image.read())
         data = data.decode('UTF-8')
-        profile_img = UserProfilePic(image=data, img_name='default_user.jpg', mime_type='image/jpeg')
+        profile_img = UserProfilePic(image=data, img_name='default_profile_pic.jpg', mime_type='image/jpeg')
         return profile_img
 
 
-def update_profile_pic(blob, user_pic, img_data):
-    mime = blob.mimetype
+def update_profile_pic(blob_url, user_pic):
+    data_url = blob_url.split(':', 1)[1]
+
+    data_split = data_url.split(';', 1)
+    mime = data_split[0]
+
     if mime != 'image/jpeg':
         mime = 'image/jpeg'
 
-    data = base64.b64encode(img_data)
-    data = data.decode('UTF-8')
+    img_data = data_split[1].split(',', 1)[1]
 
-    user_pic.image = data
+    user_pic.image = img_data
     user_pic.img_name = 'Profile_picture_{0}.jpg'.format(current_user.email.split('@')[0])
     user_pic.mime_type = mime
 

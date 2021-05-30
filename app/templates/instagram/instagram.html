@@ -70,7 +70,7 @@
                         </a>
 
                         <button id="prf-btn" class="prf-icon">
-                            <img src="{{ url_for('static', filename='instagram/images/prf_img5.jpeg') }}">
+                            <img src="data:{{ current_user.profile_pic.mime_type }};base64,{{ current_user.profile_pic.image }}">
                         </button>
 
                         <span id="drop-prf" class="dropdown-prf d-none">

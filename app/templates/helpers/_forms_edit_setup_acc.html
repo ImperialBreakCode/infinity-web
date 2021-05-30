@@ -5,6 +5,7 @@
     <form method="POST" action="" name="s-e-form" enctype="multipart/form-data">
 
         {{ form.csrf_token }}
+        {{ form.cropped_img }}
 
         <img id="sample" class="mb-4" src="data:{{ image.mime_type }};base64,{{ image.image }}">
         <div class="mb-4">
@@ -47,6 +48,7 @@
     <form method="POST" action="{{ url_for('other.setup_account') }}" name="s-e-form" enctype="multipart/form-data">
 
         {{ form.csrf_token }}
+        {{ form.cropped_img }}
 
         <img id="sample" class="mb-4" src="data:{{ image.mime_type }};base64,{{ image.image }}">
         <div class="mb-4">

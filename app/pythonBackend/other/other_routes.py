@@ -39,10 +39,9 @@ def setup_account():
         user.following = setup_form.following.data
         user.bio = setup_form.bio.data
 
-        if 'cropped-img' in request.files:
-            cropped_img = request.files['cropped-img']
-            cropped_img_data = request.files['cropped-img'].read()
-            update_profile_pic(blob=cropped_img, user_pic=user.profile_pic, img_data=cropped_img_data)
+        if setup_form.cropped_img.data != '':
+            blob_url = setup_form.cropped_img.data
+            update_profile_pic(blob_url=blob_url, user_pic=user.profile_pic)
 
         user.set = True
 

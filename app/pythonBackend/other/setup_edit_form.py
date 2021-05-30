@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, FileField, TextAreaField, SubmitField, IntegerField
+from wtforms import StringField, FileField, TextAreaField, SubmitField, IntegerField, HiddenField
 from wtforms.validators import DataRequired, NumberRange
 
 
@@ -21,6 +21,7 @@ class SetupEditForm(FlaskForm):
         'class': 'form-control',
         'rows': '3'
     })
+    cropped_img = HiddenField(id='cropped-img')
     save_button = SubmitField('Save', render_kw={
         'class': 'btn btn-primary'
     })

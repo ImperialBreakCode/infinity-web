@@ -118,7 +118,7 @@
                             <div class="accounts-section">
 
                                 {% for user in users %}
-                                    {% if user != current_user %}
+                                    {% if user != current_user and user.set %}
 
                                         <div class="accounts-single-pos">
                                             <a href="{{ url_for('instagram.user_profile', id=user.id) }}" class="accounts-single">

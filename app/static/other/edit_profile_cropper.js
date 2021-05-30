@@ -55,6 +55,7 @@ doneBtn.click(function () {
         width: 200,
         height: 200
     });
+
     sampleImage.attr('src', canvas.toDataURL());
 
     canvas.toBlob(function (blob) {
@@ -63,27 +64,16 @@ doneBtn.click(function () {
 
     }, 'image/jpeg');
 
+    setTimeout(function () {
+
+        let reader = new FileReader();
+        reader.readAsDataURL(blob_img);
+        reader.onloadend = function () {
+             $('#cropped-img').val(reader.result);
+        }
+
+    }, 600);
+
     modal.modal('hide');
 
 });
-
-form.addEventListener('submit', function (event){
-    if (blob_img != null) {
-        let formDat = new FormData(form);
-        formDat.append('cropped-img', blob_img, 'wow.jpg');
-
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.send(formDat);
-        event.preventDefault()
-
-        setTimeout(function(){
-            if(window.location.pathname == '/setup'){
-                location.replace('/')
-            }
-            else {
-                location.replace("/instagram/my-profile")
-            }
-        }, 3000)
-    }
-})
