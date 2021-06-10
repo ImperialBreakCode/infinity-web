@@ -1,0 +1,94 @@
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-columns:[start] 1fr [middle-1] 1.5fr [middle-2] 1.5fr [end] 1fr;
+    grid-template-rows:[start] 15% [middle-1] 35% [middle-2] 35% [end] 15%;
+}
+
+.c-box{
+    grid-column-start: middle-1;
+    grid-column-end: end;
+    grid-row-start: middle-1;
+    grid-row-end: end;
+    align-self: stretch;
+}
+
+.upload-box{
+    padding: 3%;
+}
+
+.upload-box h1{
+    text-align: center;
+}
+
+.inner-box-upload{
+    height: 85%;
+    align-items: center;
+}
+
+.inner-box-upload img{
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+.center-fl{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.buttons{
+    display: flex;
+    margin: 30px 0;
+    justify-content: space-between;
+}
+
+.buttons input, .buttons a{
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 10px;
+    transition: 0.3s;
+    width: 40%;
+    text-align: center;
+}
+
+.buttons input{
+    background: #1426ff;
+    box-shadow: 0 5px 20px #1426ffe6;
+}
+
+.buttons a{
+    padding: 13px 20px;
+    background: #e00000;
+    box-shadow: 0 5px 20px #e00000e6;
+}
+
+.buttons input:hover{
+    background: #2737f5;
+    box-shadow: 0 10px 20px #1426ffe6;
+}
+
+.buttons a:hover{
+    background: #ff1717;
+    box-shadow: 0 10px 20px #e00000e6;
+}
+
+@media (max-width: 1200px) {
+    body{
+        grid-template-columns:[start] 5% [middle-1] 45% [middle-2] 45% [end] 5%;
+        grid-template-rows:[start] 10% [middle-1] 40% [middle-2] 40% [end] 10%;
+    }
+}
+
+@media (max-width: 766px) {
+    .c-box{
+        align-self: start;
+    }
+
+    .center-fl img, .center-fl form{
+        width: 100%;
+    }
+}

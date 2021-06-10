@@ -1,0 +1,17 @@
+{% macro post_thumbnail(post, len) %}
+
+    <div class="col-4">
+
+        <div class="post-container">
+            <a href="{{ url_for('instagram.post', id=post.id, from_page='p') }}">
+                <img loading="lazy" src="data:{{ post.mime_type }};base64,{{ post.image }}"
+                     class="posts-img">
+                <span></span>
+                <p class="l-p"><i class="far fa-heart"></i> 0</p>
+                <p class="r-p"><i class="far fa-comment"></i> {{ len(post.comments) }}</p>
+            </a>
+        </div>
+
+    </div>
+
+{% endmacro %}

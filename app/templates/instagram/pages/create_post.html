@@ -1,0 +1,44 @@
+{% from 'instagram/macros/_form_helpers.html' import create_post_form %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/website_icon.ico') }}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons/css_pro/pro.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons/css/all.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/main_style_light.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/light_theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/create_post.css') }}">
+    <title>Instagram • Create Post</title>
+</head>
+<body class="body-light">
+
+<div class="c-box">
+    <div class="upload-box block-style">
+        <h1 class="mb-4">Create Post</h1>
+        <div class="container inner-box-upload">
+            <div class="row">
+                <div class="col-12 col-md-6 center-fl">
+
+                    {{ create_post_form(form) }}
+
+                </div>
+                <div class="col-12 col-md-6 center-fl">
+                    <img id="image-sample" src="{{ url_for('static', filename='instagram/images/img_post.svg') }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='instagram/javascript/posting.js') }}"></script>
+</body>
+</html>

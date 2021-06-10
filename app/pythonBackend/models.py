@@ -5,6 +5,17 @@ import base64
 from .. import db, login_manager
 
 
+#
+#
+# models ===============================================================================================================
+#
+#
+
+
+# user model
+#
+#
+
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
@@ -12,12 +23,14 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.Text, nullable=False)
     admin = db.Column(db.Boolean, nullable=False)
     set = db.Column(db.Boolean, nullable=False)
-    profile_pic = db.relationship('UserProfilePic', backref='user', lazy=True, uselist=False)
     name = db.Column(db.String(50), nullable=True)
     bio = db.Column(db.Text, nullable=True)
     followers = db.Column(db.Integer)
     following = db.Column(db.Integer)
     created_at = db.Column(db.String(50), nullable=False)
+    profile_pic = db.relationship('UserProfilePic', backref='user', lazy=True, uselist=False)
+    instagram_posts = db.relationship('InstagramPost', backref='user', lazy=True)
+    comments = db.relationship('Comments', backref='user', lazy=True)
 
     @property
     def password(self):
@@ -34,6 +47,10 @@ class User(db.Model, UserMixin):
         return self.email
 
 
+# profile picture model
+#
+#
+
 class UserProfilePic(db.Model):
     __tablename__ = 'profile_pic'
     id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
@@ -41,6 +58,45 @@ class UserProfilePic(db.Model):
     img_name = db.Column(db.Text, nullable=False)
     mime_type = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+
+# instagram post (image) model
+#
+#
+
+class InstagramPost(db.Model):
+    __tablename__ = 'instagram_post'
+    id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
+    created_at = db.Column(db.String(50), nullable=False)
+    caption = db.Column(db.Text)
+    image_name = db.Column(db.Text, nullable=False)
+    mime_type = db.Column(db.String(50), nullable=False)
+    image = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    comments = db.relationship('Comments', backref='post', cascade='all, delete-orphan', lazy=True)
+
+    def __str__(self):
+        return 'Post: {0} User: {1}'.format(self.id, self.user_id)
+
+
+# comment model
+#
+#
+
+class Comments(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.String(50), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('instagram_post.id'))
+
+
+#
+#
+# methods and functions to make it easier to work with the models ======================================================
+#
+#
 
 
 def def_image(email):
@@ -65,6 +121,13 @@ def update_profile_pic(blob_url, user_pic):
     user_pic.image = img_data
     user_pic.img_name = 'Profile_picture_{0}.jpg'.format(current_user.email.split('@')[0])
     user_pic.mime_type = mime
+
+
+#
+#
+# loading user if there was a session ==================================================================================
+#
+#
 
 
 @login_manager.user_loader

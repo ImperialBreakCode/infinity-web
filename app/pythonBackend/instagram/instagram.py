@@ -1,22 +1,40 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import login_required, current_user
+from werkzeug.utils import secure_filename
+from datetime import datetime
 import math
 
 from ..other.setup_edit_form import SetupEditForm
-from ..infinity_library import set_logged, setup_acc_required
-from ..models import User, update_profile_pic
+from ..instagram.create_post_form import CreatePostForm
+from ..infinity_library import set_logged, setup_acc_required, covert_image_post
+from ..models import User, InstagramPost, Comments, update_profile_pic
 from ... import db
 
 
 instagram = Blueprint('instagram', __name__, template_folder='templates', url_prefix='/instagram')
 
 
-@instagram.route('/')
+@instagram.route('/', methods=['GET', 'POST', 'DELETE'])
 @setup_acc_required
 def home():
-    all_users = User.query.all()
 
-    return render_template('instagram/pages/home.html', title='', logged=set_logged(), users=all_users, math=math)
+    if request.method == 'POST':
+        post_comment()
+
+    if request.method == 'DELETE':
+        if 'type' in request.form:
+            data = request.form['type'].split('-')
+            if data[0] == 'dp':
+                post = InstagramPost.query.filter_by(id=data[1]).first()
+                if post is not None and post.user == current_user:
+                    db.session.delete(post)
+                    db.session.commit()
+
+    all_users = User.query.all()
+    posts = InstagramPost.query.all()
+    posts_len = len(posts)
+
+    return render_template('instagram/pages/home.html', title='', logged=set_logged(), users=all_users, math=math, posts=posts, posts_len=posts_len, len=len)
 
 
 @instagram.route('/explore')
@@ -41,16 +59,91 @@ def shop():
 @login_required
 @setup_acc_required
 def my_profile():
-    return render_template('instagram/pages/my_profile.html', title=' • My Profile', logged=True, user=current_user, math=math)
+    user = User.query.filter_by(id=current_user.id).first()
+    posts = user.instagram_posts
+    posts_count = len(posts)
+    rows = math.ceil(posts_count / 3)
+    last_row_ps = posts_count - (rows - 1)*3
+
+    render_data = [posts, rows, last_row_ps, posts_count]
+    return render_template('instagram/pages/my_profile.html', title=' • My Profile', logged=True, user=current_user, math=math, render_data=render_data, len=len)
+
+
+@instagram.route('/create-post', methods=['GET', 'POST'])
+@login_required
+@setup_acc_required
+def create_post():
+    cr_post = CreatePostForm()
+
+    if cr_post.validate_on_submit():
+        caption = cr_post.caption.data.strip()
+        img = cr_post.image.data
+        img = covert_image_post(image=img, filename=secure_filename(img.filename))
+
+        insta_post = InstagramPost(created_at=datetime.now(),
+                                   caption=caption,
+                                   image_name=img[2],
+                                   mime_type=img[1],
+                                   image=img[0]
+                                   )
+
+        user = User.query.filter_by(id=current_user.id).first()
+        user.instagram_posts.append(insta_post)
+
+        db.session.add(insta_post)
+
+        db.session.commit()
+
+        return redirect(url_for('instagram.home'))
+
+    return render_template('instagram/pages/create_post.html', form=cr_post)
 
 
 @instagram.route('/profile/<id>')
 @setup_acc_required
 def user_profile(id):
     user = User.query.filter_by(id=id).first()
+
     if user is not None and user.set:
-        return render_template('instagram/pages/my_profile.html', title='• {0}'.format(user.name), logged=set_logged(), user=user, math=math)
-    return 'User not found', 404
+
+        if current_user.is_authenticated and current_user.id == user.id:
+            return redirect(url_for('instagram.my_profile'))
+
+        posts = user.instagram_posts
+        posts_count = len(posts)
+        rows = math.ceil(posts_count / 3)
+        last_row_ps = posts_count - (rows - 1) * 3
+
+        render_data = [posts, rows, last_row_ps, posts_count]
+
+        return render_template('instagram/pages/my_profile.html', title='• {0}'.format(user.name), logged=set_logged(), user=user, math=math, render_data=render_data, len=len)
+    return 404
+
+
+@instagram.route('/post/<id>/<from_page>', methods=['GET', 'POST', 'DELETE'])
+@setup_acc_required
+def post(id, from_page):
+    post = InstagramPost.query.filter_by(id=id).first()
+    comments_count = len(post.comments)
+
+    if request.method == 'POST':
+        if 'type' in request.form:
+            post_comment()
+
+        if 'delete-post' in request.form:
+            if post is not None and current_user == post.user:
+                db.session.delete(post)
+                db.session.commit()
+
+            if from_page == 'h':
+                return redirect(url_for('instagram.home'))
+            else:
+                return redirect(url_for('instagram.my_profile'))
+
+    if request.method == 'DELETE':
+        delete_comment()
+
+    return render_template('instagram/pages/post.html', from_page=from_page, post=post, cm_count=comments_count)
 
 
 @instagram.route('/edit-profile', methods=['GET', 'POST'])
@@ -87,3 +180,41 @@ def edit_profile():
         return redirect(url_for('instagram.my_profile'))
 
     return render_template('others/edit_setup_profile.html', form=edit_profile_form, title='Instagram • Edit profile', image=current_user.profile_pic)
+
+
+# help functions
+#
+
+
+def post_comment():
+    if 'type' in request.form:
+        type = request.form['type'].split('-')
+        if type[0] == 'pc':
+            id = type[1]
+            content = request.form.get('content').strip()
+
+            if content != '':
+                user = User.query.filter_by(id=current_user.id).first()
+                post = InstagramPost.query.filter_by(id=id).first()
+
+                comment = Comments(content=content, created_at=datetime.now())
+
+                user.comments.append(comment)
+                db.session.add(comment)
+                db.session.commit()
+
+                post.comments.append(comment)
+                db.session.commit()
+
+
+def delete_comment():
+    data = request.form['type']
+    type = data.split('-')[0]
+
+    if type == 'dc':
+        cmt_id = data.split('-')[1]
+        comment = Comments.query.filter_by(id=cmt_id).first()
+
+        if comment is not None and comment.user == current_user:
+            db.session.delete(comment)
+            db.session.commit()

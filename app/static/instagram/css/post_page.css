@@ -1,0 +1,259 @@
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+html, body{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+h4{
+    margin-top: 40px;
+    padding: 0 16px;
+}
+
+.post-header{
+    align-items: center;
+}
+
+.post-comment{
+    margin: 0 16px;
+}
+
+.block-style{
+    box-shadow: none;
+}
+
+.post-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+}
+
+.post-action{
+    margin-top: 8%;
+    margin-bottom: 20px;
+    padding: 0 16px;
+}
+
+.content-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    max-width: 60%;
+}
+
+.ps-img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.post-r{
+    width: 40%;
+    max-height: 90vh;
+    overflow-y: scroll;
+    padding-left: 8px;
+}
+
+.post-header i{
+    font-size: 25px;
+}
+
+.delete, .close{
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--font-c-black);
+}
+
+.close:hover{
+    color: var(--font-c-black);
+}
+
+.delete{
+    margin-right: 10px;
+    background: #ff5858!important;
+    padding: 5px 8px;
+    border-radius: 5px;
+    height: 95%;
+    transition: 0.3s;
+}
+
+.delete:hover{
+    background: red!important;
+}
+
+.post-caption{
+    padding: 0 16px;
+    font-weight: 600;
+}
+
+.comment-section{
+    margin: 0 16px;
+    padding: 10px 20px;
+    padding-top: 20px;
+    background: var(--color-bdn);
+    border-radius: 7px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.comment{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.comment img{
+    margin-top: 5px;
+}
+
+.comment div{
+     margin-left: 10px;
+}
+
+.comment a{
+    color: var(--font-c-black);
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0;
+}
+
+.comment a:hover{
+    text-decoration: underline;
+}
+
+.comment p{
+    margin: 0;
+}
+
+.mobile-only-img{
+    display: none;
+}
+
+.no-comments{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.delete-cmt{
+    display: flex;
+    align-items: center;
+}
+
+.di-cmt{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.di-cmt:hover{
+    background: var(--color-btn-hover);
+}
+
+@media (max-width: 991px) {
+
+    body{
+        background: var(--back-color-block)!important;
+    }
+
+    .post-r{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        border-radius: 0;
+        max-height: unset;
+        padding-left: 0;
+        overflow-y: unset;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        height: 3px;
+        width: 3px;
+    }
+
+    .comment-section{
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+        height: unset;
+        overflow-y: unset;
+        font-size: 16px;
+        background: transparent;
+    }
+
+    .ps-img{
+        display: none;
+    }
+
+    .container{
+        display: inline-block!important;
+    }
+
+    .post-box{
+        height: unset;
+    }
+
+    .post-action{
+        position: absolute;
+        width: 100%;
+        top: 10px;
+        margin: 0;
+    }
+
+    .post-comment{
+        position: absolute;
+        top: 80px;
+        width: 97%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        padding-top: 10px;
+        margin: 0;
+    }
+
+    .position-relative{
+        padding-top: 140px;
+    }
+
+    h4{
+       display: none;
+    }
+
+    .mobile-only-img{
+        display: inline-block;
+        width: 100%;
+    }
+}

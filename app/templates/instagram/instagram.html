@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/main_style_light.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/light_theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/under_construction.css') }}">
 
     {% block css_head %}
     {% endblock %}
@@ -74,6 +73,7 @@
                         </button>
 
                         <span id="drop-prf" class="dropdown-prf d-none">
+                            <a class="md-visible" href="{{ url_for('instagram.create_post') }}">Create Post</a>
                             <a href="{{ url_for('instagram.my_profile') }}">My Profile</a>
                             <a href="{{ url_for('other.settings', from_site='is') }}">Settings</a>
                             <a class="show-sm-only" href="#">Notifications</a>

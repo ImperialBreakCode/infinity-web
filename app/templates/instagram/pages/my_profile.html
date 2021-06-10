@@ -1,5 +1,7 @@
 {% extends 'instagram/instagram.html' %}
 
+{% from 'instagram/macros/_my_profile_post.html' import post_thumbnail %}
+
 {% block css_head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/my_profile.css') }}">
 {% endblock %}
@@ -16,7 +18,7 @@
                     <span class="profile-stats">
                         <div>
                             <button>
-                                <h5>0</h5>
+                                <h5>{{ render_data[3] }}</h5>
                                 <p>Posts</p>
                             </button>
                             <button>
@@ -79,42 +81,19 @@
         <div class="posts block-style block-light">
             <div class="container">
 
-                <div class="row mb-5">
-                    <div class="col-4 center-post">
-                        <a href="#">
-                            <div class="posts-img"></div>
-                        </a>
+                {% for r in range(1 - render_data[1], 1) %}
+                    <div class="row post-r">
+                        {% if r == 0 %}
+                            {% for i in range(-render_data[2], 0) %}
+                                {{ post_thumbnail(render_data[0][-i - 1], len) }}
+                            {% endfor %}
+                        {% else %}
+                            {% for i in range(r * 3 - render_data[2] + 1, r * 3 - render_data[2] + 4) %}
+                                {{ post_thumbnail(render_data[0][-i]), len }}
+                            {% endfor %}
+                        {% endif %}
                     </div>
-                    <div class="col-4 center-post">
-                        <a href="#">
-                            <div class="posts-img"></div>
-                        </a>
-                    </div>
-                    <div class="col-4 center-post">
-                        <a href="#">
-                            <div class="posts-img"></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row mb-5">
-                    <div class="col-4 center-post">
-                        <a href="#">
-                            <div class="posts-img"></div>
-                        </a>
-                    </div>
-                    <div class="col-4 center-post">
-                        <a href="#">
-                            <div class="posts-img"></div>
-                        </a>
-                    </div>
-                    <div class="col-4 center-post">
-                        <a href="#">
-                            <div class="posts-img"></div>
-                        </a>
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
         </div>
 

@@ -81,6 +81,10 @@
         display: none;
     }
 
+    .md-visible{
+        display: inline-block;
+    }
+
     #menu-btn{
         display: inline-block;
     }
@@ -96,6 +100,10 @@
         bottom: -230px;
         left: -10px;
         text-align: center;
+    }
+
+    .dropdown-prf{
+        bottom: -170px;
     }
 
     .nvg-link{
@@ -125,7 +133,7 @@
     }
 
     .dropdown-prf{
-        bottom: -200px;
+        bottom: -230px;
     }
 
     .dark-insta{

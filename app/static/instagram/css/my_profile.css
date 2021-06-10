@@ -1,3 +1,25 @@
+::-webkit-scrollbar {
+     width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 100px;
+    transition: 0.3s;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+     background: #555;
+}
+
+
 header{
     display: none!important;
 }
@@ -45,9 +67,9 @@ main{
 
 .first-sec img{
     border-radius: 100%;
-    height: 120px;
-    margin-top: 11%;
-    margin-bottom: 8%;
+    height: 110px;
+    margin-top: 8%;
+    margin-bottom: 5%;
 }
 
 .bio-acc{
@@ -57,6 +79,7 @@ main{
 
 .profile-view{
     height: 100vh;
+    overflow-y: scroll;
     width: 500px;
     box-shadow: none;
 }
@@ -166,34 +189,76 @@ main{
 
 .posts{
     padding: 2%;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 .posts-img{
-    height: 300px;
-    width: 300px;
-    border-radius: 17px;
-    background: url("../images/post1.jpg");
-    background-size: cover;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
-.center-post{
-    display: flex;
-    justify-content: center;
+.post-container{
+    position: relative;
 }
 
-@media (max-width: 1399px) {
+.post-container p{
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: white;
+    font-size: 25px;
+    opacity: 0;
+    transition: 0.5s;
+}
 
-    .posts-img{
-        height: 200px;
-        width: 200px;
+.l-p{
+    left: 30% !important;
+}
+
+.r-p{
+    right: 30% !important;
+}
+
+.post-container span{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: black;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.post-container:hover span{
+    opacity: 0.6;
+}
+
+.post-container:hover p{
+    opacity: 1;
+}
+
+.post-r{
+    margin-top: calc(var(--bs-gutter-x)/ 2);
+    margin-bottom: calc(var(--bs-gutter-x));
+}
+
+@media (max-width: 1250px) {
+    .post-container p{
+        font-size: 20px;
     }
 
-}
+    .l-p{
+        left: 20%!important;
+    }
 
-@media (max-width: 1099px) {
-    .posts-img{
-        height: 150px;
-        width: 150px;
+    .r-p{
+        right: 20%!important;
     }
 }
 
@@ -209,8 +274,13 @@ main{
         flex-direction: column;
     }
 
+    .post-container p{
+        display: none;
+    }
+
     .posts{
         height: 100%;
+        overflow-y: unset;
     }
 
     .profile-links{
@@ -218,8 +288,9 @@ main{
     }
 
     .profile-view{
-        height: auto;
+        height: 100vh;
         width: auto;
+        overflow: unset;
     }
 
     .profile{
@@ -230,19 +301,5 @@ main{
         padding-top: 30px;
         border-bottom-left-radius: 0;
         border-top-right-radius: 17px;
-    }
-}
-
-@media (max-width: 499px) {
-    .posts-img{
-        height: 100px;
-        width: 100px;
-    }
-}
-
-@media (max-width: 359px) {
-    .posts-img{
-        height: 70px;
-        width: 70px;
     }
 }
