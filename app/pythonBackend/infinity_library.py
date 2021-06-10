@@ -3,6 +3,7 @@ from flask_login import current_user
 from functools import wraps
 from PIL import Image
 import os
+import io
 import base64
 
 
@@ -41,19 +42,15 @@ def covert_image_post(image, filename):
 
     jp_img = img.convert(mode='RGB')
 
-    new_filename = 'app/pythonBackend/images/tmp/{0}.jpg'.format(name[0])
-    img_name = '{0}.jpg'.format(name[0])
-    jp_img.save(new_filename)
+    buffer = io.BytesIO()
 
-    with open(new_filename, 'rb') as new_img_file:
-        data = new_img_file.read()
-        data = base64.b64encode(data)
-        data = data.decode('UTF-8')
+    new_filename = '{0}.jpg'.format(name[0])
+    jp_img.save(buffer, format='JPEG')
 
-        mime = 'image/jpeg'
-
-        new_img = [data, mime, img_name]
-
-    os.remove(new_filename)
+    blob = buffer.getvalue()
+    data = base64.b64encode(blob)
+    data = data.decode('UTF-8')
+    mime = 'image/jpeg'
+    new_img = [data, mime, new_filename]
 
     return new_img
