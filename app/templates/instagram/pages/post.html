@@ -83,7 +83,7 @@
                             {% if cm_count != 0 %}
 
                                 {% for comment in post.comments %}
-                                    <div class="comment">
+                                    <div id="comment-{{ comment.id }}" class="comment">
                                         <img class="post-prf"
                                              src="data:{{ comment.user.profile_pic.mime_type }};base64,{{ comment.user.profile_pic.image }}">
                                         <div>

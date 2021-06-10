@@ -42,6 +42,10 @@ $('.inp').keypress(function (event){
 
 $('.di-cmt').click(function (event){
     deleteComment(event);
+
+    let comment_id = event.target.id.split('-')[1];
+    let select = '#comment-' + comment_id;
+    $(select).remove();
 });
 
 
@@ -56,10 +60,6 @@ function postComment(event){
     xhr.open('POST', '');
     xhr.send(data);
     input.value = '';
-
-    setTimeout(function (){
-        location.reload();
-    }, 100);
 }
 
 function deleteComment(event){
@@ -70,8 +70,4 @@ function deleteComment(event){
     let xhr = new XMLHttpRequest();
     xhr.open('DELETE', '');
     xhr.send(data);
-
-    setTimeout(function (){
-        location.reload();
-    }, 100);
 }

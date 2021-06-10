@@ -14,8 +14,6 @@ admin_panel = Admin(template_mode='bootstrap4')
 
 def create_app():
 
-    # sqlite:///pythonBackend/database.sqlite
-
     # creating app
     app = Flask(__name__)
 

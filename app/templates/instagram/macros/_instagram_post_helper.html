@@ -72,9 +72,9 @@
                 {% endif %}
 
                 {% if len(post.comments) != 0 %}
-                    <a class="view-comments" href="{{ url_for('instagram.post', id=post.id, from_page='h') }}">View all {{ len(post.comments) }} comments</a>
+                    <a id="link-cmt-{{ post.id }}" class="view-comments" href="{{ url_for('instagram.post', id=post.id, from_page='h') }}">View all {{ len(post.comments) }} comments</a>
                 {% elif len(post.comments) == 1 %}
-                    <a class="view-comments" href="{{ url_for('instagram.post', id=post.id, from_page='h') }}">View all {{ len(post.comments) }} comment</a>
+                    <a id="link-cmt-{{ post.id }}" class="view-comments" href="{{ url_for('instagram.post', id=post.id, from_page='h') }}">View all {{ len(post.comments) }} comment</a>
                 {% endif %}
             </div>
 
