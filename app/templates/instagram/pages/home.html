@@ -7,15 +7,15 @@
     {% if logged %}
         <div id="h-del-post" class="modal fade" tabindex="-1">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+                <div class="modal-content {% if current_user.dark_theme %}text-white bg-dark border-secondary{% endif %}">
+                    <div class="modal-header {% if current_user.dark_theme %}border-secondary{% endif %}">
                         <h5 class="modal-title">Delete Post</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" {% if current_user.dark_theme %}style="filter: invert()"{% endif %} data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p>Are you sure that you want to delete this post?</p>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer {% if current_user.dark_theme %}border-secondary{% endif %}">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button id="confirm-deletion" type="button" class="btn btn-danger">Delete</button>
                     </div>
@@ -127,7 +127,9 @@
 
                     <div>
                         {% for p in range(-posts_len + 1 , 1) %}
-                            {{ post(posts[-p], current_user, len) }}
+                            {% if logged or not posts[-p].user.private_profile %}
+                                {{ post(posts[-p], current_user, len) }}
+                            {% endif %}
                         {% endfor %}
                     </div>
 

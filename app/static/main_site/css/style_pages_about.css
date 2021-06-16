@@ -7,6 +7,12 @@
     color: white;
 }
 
+.custom-al{
+    color: #04ff89;
+    background-color: #d1e7dd00;
+    border-color: #04ff89;
+}
+
 .first-sec span{
     position: absolute;
     left: 0;

@@ -1,3 +1,5 @@
+{% from 'helpers/_forms_settings.html' import changePassForm, settingsForm %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,15 +20,42 @@
     <div class="row">
         <div class="col">
 
+            {% with messages = get_flashed_messages(with_categories=True, category_filter=["message"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success d-flex align-items-center justify-content-center"
+                             role="alert">
+                            <div>
+                                {{ message[1] }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% with errors = get_flashed_messages(with_categories=True, category_filter=["error"]) %}
+                {% if errors %}
+                    {% for error in errors %}
+                        <div class="alert alert-danger d-flex align-items-center justify-content-center"
+                             role="alert">
+                            <div>
+                                {{ error[1] }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
             <div class="mb-4">
-                <a href="{% if from_site == 'main' %} {{ url_for('mainSite.home') }} {% elif from_site == 'mprf' %} {{ url_for('instagram.my_profile') }} {% else %} {{ url_for('instagram.home') }} {% endif %}" class="btn btn-primary">Back</a>
+                <a href="{% if from_site == 'main' %} {{ url_for('mainSite.home') }} {% elif from_site == 'mprf' %} {{ url_for('instagram.my_profile') }} {% else %} {{ url_for('instagram.home') }} {% endif %}"
+                   class="btn btn-primary">Back</a>
             </div>
 
             <h1>Settings</h1>
 
             <div class="d-flex align-items-center mb-4">
                 <h5 class="mb-0 me-2">E-mail:</h5>
-                <p class="mb-0">email@infinity.com</p>
+                <p class="mb-0">{{ current_user.email }}</p>
             </div>
             <div class="d-flex align-items-center mb-4">
                 <h5 class="mb-0">Password</h5>
@@ -36,71 +65,15 @@
             </div>
 
             <div id="change-pass" class="border border-secondary rounded-3 p-4 mb-4 collapse">
-                <form>
-                    <div class="mb-3">
-                        <label for="inputPassword1" class="form-label">Current password</label>
-                        <input type="password" class="form-control" id="inputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputPasswordnew" class="form-label">New password</label>
-                        <input type="password" class="form-control" id="inputPasswordnew">
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputPasswordnew1" class="form-label">Confirm new password</label>
-                        <input type="password" class="form-control" id="inputPasswordnew1">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
+
+                {{ changePassForm(change_pass_form) }}
+
             </div>
 
             <div class="border border-secondary rounded-3 p-4">
-                <form>
-                     <div class="mb-4">
-                         <h5>Dark theme</h5>
-                         <div class="form-check form-switch">
-                             <input class="form-check-input" type="checkbox" id="dark-check">
-                             <label class="form-check-label" for="dark-check">Dark theme</label>
-                         </div>
-                         <p>Dark theme will be applied only the instagram pages.</p>
-                    </div>
-                    <div class="mb-4">
-                        <h5>Instagram profile</h5>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="private-profile-check">
-                            <label class="form-check-label" for="private-profile-check">Private profile</label>
-                        </div>
-                        <p>When you are private your profile and posts will be only visible to users who have accounts.</p>
-                    </div>
-                    <div class="mb-4">
-                        <h5>Instagram posts</h5>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                                   checked>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Show posts only in the instagram page
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Show posts in the main site and instagram
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <h5>Text articles</h5>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Make text articles invisible to non-account users
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
 
-                </form>
+                {{ settingsForm(settings) }}
+
             </div>
 
 

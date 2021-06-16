@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, make_response, jsonify
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -19,7 +19,7 @@ instagram = Blueprint('instagram', __name__, template_folder='templates', url_pr
 def home():
 
     if request.method == 'POST':
-        post_comment()
+        post_comment(cmt_data=request.form)
 
     if request.method == 'DELETE':
         if 'type' in request.form:
@@ -59,14 +59,20 @@ def shop():
 @login_required
 @setup_acc_required
 def my_profile():
-    user = User.query.filter_by(id=current_user.id).first()
-    posts = user.instagram_posts
-    posts_count = len(posts)
-    rows = math.ceil(posts_count / 3)
-    last_row_ps = posts_count - (rows - 1)*3
+    posts = current_user.instagram_posts
 
-    render_data = [posts, rows, last_row_ps, posts_count]
-    return render_template('instagram/pages/my_profile.html', title=' • My Profile', logged=True, user=current_user, math=math, render_data=render_data, len=len)
+    calculated_data = calculate_posts_and_rows(posts)
+
+    return render_template('instagram/pages/my_profile.html',
+                           title=' • My Profile',
+                           logged=True,
+                           user=current_user,
+                           math=math,
+                           rows=calculated_data[1],
+                           posts=posts,
+                           posts_on_row=calculated_data[0],
+                           len=len
+                           )
 
 
 @instagram.route('/create-post', methods=['GET', 'POST'])
@@ -109,15 +115,23 @@ def user_profile(id):
         if current_user.is_authenticated and current_user.id == user.id:
             return redirect(url_for('instagram.my_profile'))
 
-        posts = user.instagram_posts
-        posts_count = len(posts)
-        rows = math.ceil(posts_count / 3)
-        last_row_ps = posts_count - (rows - 1) * 3
+        if current_user.is_authenticated or not user.private_profile:
+            posts = user.instagram_posts
 
-        render_data = [posts, rows, last_row_ps, posts_count]
+            calculated_data = calculate_posts_and_rows(posts)
 
-        return render_template('instagram/pages/my_profile.html', title='• {0}'.format(user.name), logged=set_logged(), user=user, math=math, render_data=render_data, len=len)
-    return 404
+            return render_template('instagram/pages/my_profile.html',
+                                   title='• {0}'.format(user.name),
+                                   logged=set_logged(),
+                                   user=user,
+                                   math=math,
+                                   posts=posts,
+                                   rows=calculated_data[1],
+                                   posts_on_row=calculated_data[0],
+                                   len=len
+                                   )
+
+    return make_response(), 404
 
 
 @instagram.route('/post/<id>/<from_page>', methods=['GET', 'POST', 'DELETE'])
@@ -126,24 +140,34 @@ def post(id, from_page):
     post = InstagramPost.query.filter_by(id=id).first()
     comments_count = len(post.comments)
 
-    if request.method == 'POST':
-        if 'type' in request.form:
-            post_comment()
+    if current_user.is_authenticated or not post.user.private_profile:
 
-        if 'delete-post' in request.form:
-            if post is not None and current_user == post.user:
-                db.session.delete(post)
-                db.session.commit()
+        if request.method == 'POST':
+            cmt_dat = request.get_json()
+            if cmt_dat is None:
+                cmt_dat = dict()
 
-            if from_page == 'h':
-                return redirect(url_for('instagram.home'))
-            else:
-                return redirect(url_for('instagram.my_profile'))
+            if 'type' in cmt_dat:
+                cmt = post_comment(cmt_data=cmt_dat)
+                return make_response(jsonify({'id': cmt.id}))
 
-    if request.method == 'DELETE':
-        delete_comment()
+            if 'delete-post' in request.form:
+                if post is not None and current_user == post.user:
+                    db.session.delete(post)
+                    db.session.commit()
 
-    return render_template('instagram/pages/post.html', from_page=from_page, post=post, cm_count=comments_count)
+                if from_page == 'h':
+                    return redirect(url_for('instagram.home'))
+                else:
+                    return redirect(url_for('instagram.my_profile'))
+
+        if request.method == 'DELETE':
+            delete_comment()
+
+        return render_template('instagram/pages/post.html', from_page=from_page, post=post, cm_count=comments_count)
+
+    else:
+        return make_response(), 404
 
 
 @instagram.route('/edit-profile', methods=['GET', 'POST'])
@@ -186,12 +210,12 @@ def edit_profile():
 #
 
 
-def post_comment():
-    if 'type' in request.form:
-        type = request.form['type'].split('-')
+def post_comment(cmt_data):
+    if 'type' in cmt_data:
+        type = cmt_data['type'].split('-')
         if type[0] == 'pc':
             id = type[1]
-            content = request.form.get('content').strip()
+            content = cmt_data.get('content').strip()
 
             if content != '':
                 user = User.query.filter_by(id=current_user.id).first()
@@ -206,6 +230,8 @@ def post_comment():
                 post.comments.append(comment)
                 db.session.commit()
 
+                return comment
+
 
 def delete_comment():
     data = request.form['type']
@@ -218,3 +244,20 @@ def delete_comment():
         if comment is not None and comment.user == current_user:
             db.session.delete(comment)
             db.session.commit()
+
+
+def calculate_posts_and_rows(posts):
+    posts_count = len(posts)
+    rows = math.ceil(posts_count / 3)
+    last_row_ps = posts_count - (rows - 1) * 3
+    posts_on_row = []
+
+    post_index_fist = 0
+    for r in range(rows):
+        if r == 0:
+            post_index_fist += last_row_ps - 1
+        else:
+            post_index_fist += 3
+        posts_on_row.append(post_index_fist)
+
+    return [posts_on_row, rows]

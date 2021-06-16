@@ -19,6 +19,31 @@ footer{
     padding: 0 20%;
 }
 
+.marker{
+    background-color: yellow;
+    color: black;
+}
+
+.card-body blockquote{
+    padding-left: 20px;
+    padding-right: 8px;
+    border: 0 solid #ccc;
+    border-left-width: 5px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-style: italic;
+}
+
+.card-header{
+    position: relative;
+}
+
+.btn-contr{
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    transform: translate(0, -50%);
+}
+
 @media (max-width: 991px){
 
     .pad-card{

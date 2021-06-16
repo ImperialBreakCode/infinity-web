@@ -18,19 +18,34 @@ from .. import db, login_manager
 
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
+    # main values
     id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
     email = db.Column(db.String(50), unique=True, nullable=False)
     password_hash = db.Column(db.Text, nullable=False)
     admin = db.Column(db.Boolean, nullable=False)
     set = db.Column(db.Boolean, nullable=False)
+
+    # required for setup account
     name = db.Column(db.String(50), nullable=True)
     bio = db.Column(db.Text, nullable=True)
     followers = db.Column(db.Integer)
     following = db.Column(db.Integer)
+
+    # when is created
     created_at = db.Column(db.String(50), nullable=False)
+
+    # relations
     profile_pic = db.relationship('UserProfilePic', backref='user', lazy=True, uselist=False)
     instagram_posts = db.relationship('InstagramPost', backref='user', lazy=True)
     comments = db.relationship('Comments', backref='user', lazy=True)
+    articles = db.relationship('Article', backref='user', lazy=True)
+
+    # settings
+    dark_theme = db.Column(db.Boolean)
+    private_profile = db.Column(db.Boolean)
+    instagram_post_visibility = db.Column(db.Integer)
+    # options - 0 and 1; 0 - show posts everywhere, 1 - show posts only in instagram page
+    private_articles = db.Column(db.Boolean)
 
     @property
     def password(self):
@@ -92,6 +107,19 @@ class Comments(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('instagram_post.id'))
 
 
+# article model
+#
+#
+
+class Article(db.Model):
+    __tablename__ = 'articles'
+    id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
+    title = db.Column(db.String(100), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.String(50), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+
 #
 #
 # methods and functions to make it easier to work with the models ======================================================
@@ -99,7 +127,7 @@ class Comments(db.Model):
 #
 
 
-def def_image(email):
+def def_image():
     with open('app/pythonBackend/images/profile_def.jpg', 'rb') as image:
         data = base64.b64encode(image.read())
         data = data.decode('UTF-8')

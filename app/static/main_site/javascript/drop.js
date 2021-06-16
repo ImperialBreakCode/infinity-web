@@ -6,7 +6,6 @@ $(document).ready(function(){
 
         $('#dr-btn').toggle({duration: 300, easing: 'easeInOutQuad'});
 
-
     });
 
 });

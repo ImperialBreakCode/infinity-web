@@ -3,7 +3,7 @@
     <div class="col-4">
 
         <div class="post-container">
-            <a href="{{ url_for('instagram.post', id=post.id, from_page='p') }}">
+            <a href="{{ url_for('instagram.post', id=post.id, from_page=post.user.id) }}">
                 <img loading="lazy" src="data:{{ post.mime_type }};base64,{{ post.image }}"
                      class="posts-img">
                 <span></span>

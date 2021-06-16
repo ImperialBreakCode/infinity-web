@@ -11,7 +11,7 @@
 
             <div class="ms-auto">
                 <button data-bs-toggle="dropdown"><i class="far fa-ellipsis-v mn fa-lg"></i></button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ul class="dropdown-menu {% if current_user.dark_theme %}dropdown-menu-dark{% endif %}" aria-labelledby="dropdownMenuButton1">
                     <li><a id="dp-{{ post.id }}" class="dropdown-item dp-js" href="#">Delete</a></li>
                 </ul>
             </div>

@@ -8,7 +8,7 @@
 
 {% block body %}
 
-    <main class="main-light">
+    <main class="{% if logged and current_user.dark_theme %}main-dark{% else %}main-light{% endif %}">
         <div class="profile-view">
             <div class="profile">
                 <div class="first-sec">
@@ -18,7 +18,7 @@
                     <span class="profile-stats">
                         <div>
                             <button>
-                                <h5>{{ render_data[3] }}</h5>
+                                <h5>{{ len(posts) }}</h5>
                                 <p>Posts</p>
                             </button>
                             <button>
@@ -78,19 +78,21 @@
 
         </div>
 
-        <div class="posts block-style block-light">
+        <div class="posts block-style {% if logged and current_user.dark_theme %}block-dark{% else %}block-light{% endif %}">
             <div class="container">
 
-                {% for r in range(1 - render_data[1], 1) %}
+                {% for r in range(1 - rows, 1) %}
                     <div class="row post-r">
                         {% if r == 0 %}
-                            {% for i in range(-render_data[2], 0) %}
-                                {{ post_thumbnail(render_data[0][-i - 1], len) }}
+                            {% for i in range(-posts_on_row[-r], 1) %}
+                                {{ post_thumbnail(posts[-i], len) }}
                             {% endfor %}
                         {% else %}
-                            {% for i in range(r * 3 - render_data[2] + 1, r * 3 - render_data[2] + 4) %}
-                                {{ post_thumbnail(render_data[0][-i]), len }}
+
+                            {% for i in range(-posts_on_row[-r], -posts_on_row[-r] + 3) %}
+                                {{ post_thumbnail(posts[-i], len) }}
                             {% endfor %}
+
                         {% endif %}
                     </div>
                 {% endfor %}
@@ -102,5 +104,11 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ url_for('static', filename='instagram/javascript/light_my_profile.js') }}"></script>
+
+    {% if logged and current_user.dark_theme %}
+        <script src="{{ url_for('static', filename='instagram/javascript/dark_my_profile.js') }}"></script>
+    {% else %}
+        <script src="{{ url_for('static', filename='instagram/javascript/light_my_profile.js') }}"></script>
+    {% endif %}
+
 {% endblock %}

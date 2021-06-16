@@ -1,0 +1,81 @@
+{% macro changePassForm(form) %}
+
+    <form method="POST" action="" novalidate>
+        {{ form.csrf_token }}
+        <div class="mb-3">
+            <label for="{{ form.current_pass.id }}" class="form-label">{{ form.current_pass.label.text }}</label>
+            {{ form.current_pass }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.new_pass.id }}" class="form-label">{{ form.new_pass.label.text }} ( password must be at
+                least 8 symbols long)</label>
+            {{ form.new_pass }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.confirm_pass.id }}" class="form-label">{{ form.confirm_pass.label.text }}</label>
+            {{ form.confirm_pass }}
+        </div>
+        {{ form.submit }}
+    </form>
+
+{% endmacro %}
+
+
+
+{% macro settingsForm(form) %}
+
+    <form method="POST" action="">
+
+        {{ form.csrf_token(id='csrf_token_1') }}
+
+        <div class="mb-4">
+            <h5>Dark theme</h5>
+            <div class="form-check form-switch">
+                {{ form.dark_theme }}
+                <label class="form-check-label" for="{{ form.dark_theme.id }}">{{ form.dark_theme.label.text }}</label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <h5>Instagram profile</h5>
+            <div class="form-check form-switch">
+                {{ form.private_profile }}
+                <label class="form-check-label"
+                       for="{{ form.private_profile.id }}">{{ form.private_profile.label.text }}</label>
+            </div>
+            <p>When you are private your profile and posts are visible only to those who have accounts.</p>
+        </div>
+
+        <div class="mb-4">
+            <h5>{{ form.insta_post_setting.label.text }}</h5>
+
+            {% for radio in form.insta_post_setting %}
+
+                <div class="form-check">
+                    {{ radio(class='form-check-input') }}
+                    <label class="form-check-label" for="{{ radio.id }}">
+                        {{ radio.label.text }}
+                    </label>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="mb-4">
+            <h5>Articles</h5>
+            <div class="form-check">
+                {{ form.articles_setting }}
+                <label class="form-check-label" for="{{ form.articles_setting.id }}">
+                    {{ form.articles_setting.label.text }}
+                </label>
+            </div>
+        </div>
+
+        <div class="col-12">
+            {{ form.save }}
+        </div>
+
+    </form>
+
+{% endmacro %}

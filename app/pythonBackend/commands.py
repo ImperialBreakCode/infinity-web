@@ -5,7 +5,7 @@ from .models import User, def_image
 import datetime
 
 
-bp_command = Blueprint('acc-cmd', __name__)
+bp_command = Blueprint('main-cmd', __name__)
 
 
 @bp_command.cli.command('su-create')
@@ -32,3 +32,18 @@ def create_su():
 def create_tables():
     db.create_all()
     print('created tables')
+
+
+@bp_command.cli.command('st-populate')
+def settings_populate():
+    users = User.query.all()
+
+    for user in users:
+        user.dark_theme = False
+        user.private_profile = False
+        user.instagram_post_visibility = 0
+        user.private_articles = False
+
+        db.session.commit()
+
+    print('populated')

@@ -4,7 +4,7 @@ from flask_login import current_user
 
 from ... import login_manager
 from ... import db
-from ..models import User, UserProfilePic, InstagramPost, Comments
+from ..models import User, UserProfilePic, InstagramPost, Comments, Article
 
 
 class AdminIndex(AdminIndexView):
@@ -45,5 +45,6 @@ model_views = {
     UserModelView(User, db.session),
     ProfilePicView(UserProfilePic, db.session),
     InstagramPostView(InstagramPost, db.session),
-    AdminModelView(Comments, db.session)
+    AdminModelView(Comments, db.session),
+    AdminModelView(Article, db.session)
 }

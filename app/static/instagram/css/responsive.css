@@ -74,6 +74,10 @@
     .my-profile{
         width: 295px;
     }
+
+    .accounts{
+        display: none;
+    }
 }
 
 @media (max-width: 991px){

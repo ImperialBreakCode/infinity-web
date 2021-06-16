@@ -4,30 +4,49 @@ from flask_login import LoginManager
 from sqlalchemy_utils import database_exists
 from flask_migrate import Migrate
 from flask_admin import Admin
+from flask_ckeditor import CKEditor
+from flask_mail import Mail
+from dotenv import load_dotenv
+import os
 
 
 db = SQLAlchemy()
 login_manager = LoginManager()
 migrate = Migrate()
 admin_panel = Admin(template_mode='bootstrap4')
+ckeditor = CKEditor()
+mail = Mail()
 
 
 def create_app():
+
+    load_dotenv()
+
+    # sqlite:///pythonBackend/database.sqlite
 
     # creating app
     app = Flask(__name__)
 
     # configuring app
     app.config.from_mapping(
-        SECRET_KEY='a55dzssftnnvd88er;,iuijkjyuiyui',
-        SQLALCHEMY_DATABASE_URI='postgresql://bmtgzpwbkqrijw:6e0f0a305dba66ddf05e48120887fe3d8b41b884d2b1e5c727dc814640ba311d@ec2-3-212-75-25.compute-1.amazonaws.com:5432/da60litc8116en',
-        SQLALCHEMY_TRACK_MODIFICATIONS=False
+        SECRET_KEY=os.environ['SECRET_KEY'],
+        SQLALCHEMY_DATABASE_URI=os.environ['SQLALCHEMY_DATABASE_URI'],
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+        CKEDITOR_PKG_TYPE='standard',
+        MAIL_SERVER=os.environ['MAIL_SERVER'],
+        MAIL_PORT=os.environ['MAIL_PORT'],
+        MAIL_USERNAME=os.environ['MAIL_USERNAME'],
+        MAIL_PASSWORD=os.environ['MAIL_PASSWORD'],
+        MAIL_USE_TLS=True,
+        MAIL_DEFAULT_SENDER=os.environ['MAIL_DEFAULT_SENDER']
     )
 
     # initialising with app
     db.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app, db)
+    ckeditor.init_app(app)
+    mail.init_app(app)
 
     from .pythonBackend.admin.admin import AdminIndex
     admin_panel.init_app(app, index_view=AdminIndex())
@@ -47,6 +66,10 @@ def create_app():
 
     from .pythonBackend.other.other_routes import other
     app.register_blueprint(other)
+
+    # registering apis
+    from .pythonBackend.api.api_for_front_end import front_end_api
+    app.register_blueprint(front_end_api)
 
     # registering command blueprints
     from .pythonBackend.commands import bp_command

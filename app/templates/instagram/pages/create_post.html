@@ -14,7 +14,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='icons/css_pro/pro.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icons/css/all.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/main_style_light.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/light_theme.css') }}">
+
+    {% if current_user.dark_theme %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/dark_theme.css') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/light_theme.css') }}">
+    {% endif %}
+
     <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/create_post.css') }}">
     <title>Instagram • Create Post</title>
 </head>

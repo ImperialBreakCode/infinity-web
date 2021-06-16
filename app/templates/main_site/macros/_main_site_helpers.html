@@ -1,27 +1,28 @@
-{% macro article(title, content, account) %}
+{% macro article(article, current_user) %}
 
-     <div class="row">
+     <div id="r-{{ article.id }}" class="row">
          <div class="col pad-card">
 
              <div class="card text-white bg-dark mb-4">
                  <div class="card-header text-center">
-                     Made by: {{ account }}
-                 </div>
-                 <div class="card-body">
-                     <h5 class="card-title text-center mb-4">{{ title }}</h5>
-                     <p class="card-text mt-3">{{ content }}</p>
+                     <h5 class="card-title text-center">{{ article.title }}</h5>
+                     {% if current_user.is_authenticated and article.user == current_user %}
 
-                     {% if 6 < 5 %}
-
-                     <div class="text-center">
-                         <a href="#" class="btn btn-warning">Edit</a>
-                         <button class="delete-btn btn btn-danger">Delete</button>
-                     </div>
+                         <div class="text-center btn-contr">
+                             <a href="{{ url_for('mainSite.edit_article', art_id=article.id) }}" class="btn btn-warning">Edit</a>
+                             <button id="da-{{ article.id }}" class="delete-btn btn btn-danger">Delete</button>
+                         </div>
 
                      {% endif %}
                  </div>
+                 <div class="card-body">
+                     <p class="card-text mt-3">{{ article.content | safe }}</p>
+                 </div>
                  <div class="card-footer text-muted text-center">
-                     2 days ago
+                     {% set date_list = article.created_at.split(' ') %}
+                     {% set time = date_list[1].split('.') %}
+                     Made by: {{ article.user.email }}<br>
+                     {{ date_list[0] }} at {{ time[0] }} (WET)
                  </div>
              </div>
 
@@ -32,16 +33,16 @@
 
 
 
-{% macro inst_post(title, account) %}
+{% macro inst_post(post) %}
 
     <div class="row">
         <div class="col pad-card">
 
             <div class="card text-white bg-dark mb-4">
-                <img src="{{ url_for('static', filename='instagram/images/post1.jpg') }}" class="card-img-top" alt="post image">
+                <img src="data:{{ post.mime_type }};base64,{{ post.image }}" class="card-img-top" alt="post image">
                 <div class="card-body">
-                    <h5 class="card-title">{{ title }}</h5>
-                    <p class="card-text"><small class="text-muted">uploaded {{ account }}</small></p>
+                    <h5 class="card-title">{{ post.caption }}</h5>
+                    <p class="card-text"><small class="text-muted">Uploaded by {{ post.user.email }}</small></p>
                 </div>
             </div>
 
