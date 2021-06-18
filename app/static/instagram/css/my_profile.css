@@ -248,6 +248,14 @@ main{
     margin-bottom: calc(var(--bs-gutter-x));
 }
 
+.no-posts{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
 @media (max-width: 1250px) {
     .post-container p{
         font-size: 20px;
@@ -302,4 +310,23 @@ main{
         border-bottom-left-radius: 0;
         border-top-right-radius: 17px;
     }
+}
+
+
+@media (max-width: 500px) {
+
+    .post-r{
+        margin-top: 0;
+        margin-bottom: 4px;
+    }
+
+    .post-r .col-4{
+        padding-right: 2px;
+        padding-left: 2px;
+    }
+
+    .posts-img{
+        border-radius: 7px;
+    }
+
 }

@@ -1,13 +1,13 @@
-{% macro edit_form(form, image) %}
+{% macro edit_form(form, image, from_page) %}
 
     <h1 class="mb-3">Edit Profile</h1>
 
-    <form method="POST" action="" name="s-e-form" enctype="multipart/form-data">
+    <form class="block-style" method="POST" action="" name="s-e-form" enctype="multipart/form-data">
 
         {{ form.csrf_token }}
         {{ form.cropped_img }}
 
-        <img id="sample" class="mb-4" src="data:{{ image.mime_type }};base64,{{ image.image }}">
+        <img id="sample" class="mb-4 dark-img-sample" src="data:{{ image.mime_type }};base64,{{ image.image }}">
         <div class="mb-4">
             <label for="{{ form.image_upload.id }}" class="form-label">{{ form.image_upload.label.text }}</label>
             {{ form.image_upload }}
@@ -32,7 +32,7 @@
         </div>
         <div>
             {{ form.save_button }}
-            <a id="cancel-btn" href="{{ url_for('instagram.my_profile') }}"
+            <a id="cancel-btn" href="{% if from_page == 'h' %} {{ url_for('instagram.home') }} {% else %} {{ url_for('instagram.my_profile') }} {% endif %}"
                class="btn btn-secondary">Cancel</a>
         </div>
     </form>
@@ -45,7 +45,7 @@
 
     <h1 class="mb-3">Setup your account</h1>
 
-    <form method="POST" action="{{ url_for('other.setup_account') }}" name="s-e-form" enctype="multipart/form-data">
+    <form class="block-style" method="POST" action="{{ url_for('other.setup_account') }}" name="s-e-form" enctype="multipart/form-data">
 
         {{ form.csrf_token }}
         {{ form.cropped_img }}

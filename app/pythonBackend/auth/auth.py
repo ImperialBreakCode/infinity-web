@@ -23,7 +23,9 @@ def login():
         user = User.query.filter_by(email=email).first()
 
         if user is not None and user.check_password(password):
-            login_user(user)
+            remember_duration = datetime.timedelta(days=3)
+
+            login_user(user, remember=True, duration=remember_duration)
 
             if not user.set:
                 return redirect(url_for('other.get_started'))
@@ -59,7 +61,7 @@ def register():
                         )
         db.session.add(new_user)
 
-        profile_pic = def_image(new_user.email)
+        profile_pic = def_image()
         new_user.profile_pic = profile_pic
         db.session.add(profile_pic)
 

@@ -2,6 +2,7 @@ html, body{
     margin: 0;
     padding: 0;
     font-family: 'Raleway', sans-serif;
+    color: var(--font-c-black);
 }
 
 #cropper-img{
@@ -45,6 +46,10 @@ form img{
 
 .cropper-face, .cropper-view-box{
     border-radius: 100%;
+}
+
+.block-style{
+    box-shadow: none;
 }
 
 @media (max-width: 1400px) {

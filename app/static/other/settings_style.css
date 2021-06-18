@@ -1,18 +1,64 @@
 html, body{
     margin: 0;
-    height: 100vh;
-    background: #ffffff;
+    min-height: 100vh;
+    background: linear-gradient(17deg, #4269ff2e, #3200ff1c);
     font-family: 'Roboto', sans-serif;
 }
 
-body{
-    padding: 20px;
+button, input{
+    border-radius: 10px!important;
 }
 
 .col{
     width: 500px;
 }
 
+body{
+    padding-top: 20px;
+}
+
 h1{
-    margin-bottom: 40px;
+    margin: 0;
+    color: white;
+    margin-left: 1%;
+}
+
+.set-head{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: linear-gradient(90deg, #3c6fff, #881bf7);
+    padding: 20px;
+    margin: 20px;
+    margin-top: 0;
+    border-radius: 20px;
+}
+
+.set-head a{
+    border-radius: 10px;
+}
+
+.set-head a:hover{
+    background: #d4d4d4;
+    border-color: transparent;
+}
+
+.credentials, .main-settings{
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.custom-danger{
+    color: white;
+    background: #d20000;
+    border-color: transparent;
+    border-radius: 20px;
+}
+
+.custom-success{
+    color: white;
+    background: green;
+    border-color: transparent;
+    border-radius: 20px;
 }

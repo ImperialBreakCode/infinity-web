@@ -27,7 +27,7 @@ class SettingsForm(FlaskForm):
     private_profile = BooleanField('Private profile', id='private-profile-check', render_kw={
         'class': 'form-check-input'
     })
-    insta_post_setting = RadioField('Instagram posts', choices=[
+    insta_post_setting = RadioField('Instagram posts', validators=[DataRequired()], choices=[
         ('0', 'Show posts in the main site and instagram'),
         ('1', 'Show posts only in the instagram page')
     ], default='0')

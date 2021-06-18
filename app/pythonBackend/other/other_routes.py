@@ -62,6 +62,8 @@ def settings(from_site):
         else:
             flash('Your new password must be at least 8 symbols long.', 'error')
 
+        return redirect(url_for('other.settings', from_site=from_site))
+
     # changing settings if requested
     if main_settings.validate_on_submit():
         user.dark_theme = main_settings.dark_theme.data
@@ -72,7 +74,12 @@ def settings(from_site):
 
         db.session.commit()
 
-        flash('Settings updated', 'message')
+        if from_site == 'main':
+            return redirect(url_for('mainSite.home'))
+        elif from_site == 'mprf':
+            return redirect(url_for('instagram.my_profile'))
+        else:
+            return redirect(url_for('instagram.home'))
 
     return render_template('others/settings.html', from_site=from_site, change_pass_form=change_pass, settings=main_settings)
 

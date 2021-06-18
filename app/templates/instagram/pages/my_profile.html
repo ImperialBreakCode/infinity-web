@@ -47,7 +47,7 @@
                             </button>
                         </div>
                         {% if user == current_user %}
-                            <a href="{{ url_for('instagram.edit_profile') }}" class="prf-btn">Edit Profile</a>
+                            <a href="{{ url_for('instagram.edit_profile', from_page='prf') }}" class="prf-btn">Edit Profile</a>
                         {% elif user != current_user and logged %}
                             <button class="follow-btn">Follow</button>
                         {% endif %}
@@ -79,6 +79,13 @@
         </div>
 
         <div class="posts block-style {% if logged and current_user.dark_theme %}block-dark{% else %}block-light{% endif %}">
+
+            {% if not posts %}
+                <div class="no-posts">
+                    <h1 class="no-posts">No Posts</h1>
+                </div>
+            {% endif %}
+
             <div class="container">
 
                 {% for r in range(1 - rows, 1) %}
@@ -96,6 +103,7 @@
                         {% endif %}
                     </div>
                 {% endfor %}
+
             </div>
         </div>
 

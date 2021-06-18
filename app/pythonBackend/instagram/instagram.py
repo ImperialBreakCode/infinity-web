@@ -14,12 +14,9 @@ from ... import db
 instagram = Blueprint('instagram', __name__, template_folder='templates', url_prefix='/instagram')
 
 
-@instagram.route('/', methods=['GET', 'POST', 'DELETE'])
+@instagram.route('/', methods=['GET', 'DELETE'])
 @setup_acc_required
 def home():
-
-    if request.method == 'POST':
-        post_comment(cmt_data=request.form)
 
     if request.method == 'DELETE':
         if 'type' in request.form:
@@ -143,14 +140,6 @@ def post(id, from_page):
     if current_user.is_authenticated or not post.user.private_profile:
 
         if request.method == 'POST':
-            cmt_dat = request.get_json()
-            if cmt_dat is None:
-                cmt_dat = dict()
-
-            if 'type' in cmt_dat:
-                cmt = post_comment(cmt_data=cmt_dat)
-                return make_response(jsonify({'id': cmt.id}))
-
             if 'delete-post' in request.form:
                 if post is not None and current_user == post.user:
                     db.session.delete(post)
@@ -170,10 +159,10 @@ def post(id, from_page):
         return make_response(), 404
 
 
-@instagram.route('/edit-profile', methods=['GET', 'POST'])
+@instagram.route('/edit-profile/<from_page>', methods=['GET', 'POST'])
 @login_required
 @setup_acc_required
-def edit_profile():
+def edit_profile(from_page):
 
     edit_profile_form = SetupEditForm()
 
@@ -201,37 +190,16 @@ def edit_profile():
         if 'cropped-img' in request.files:
             return ''
 
+        if from_page == 'h':
+            return redirect(url_for('instagram.home'))
+
         return redirect(url_for('instagram.my_profile'))
 
-    return render_template('others/edit_setup_profile.html', form=edit_profile_form, title='Instagram • Edit profile', image=current_user.profile_pic)
+    return render_template('others/edit_setup_profile.html', form=edit_profile_form, title='Instagram • Edit profile', image=current_user.profile_pic, from_page=from_page)
 
 
 # help functions
 #
-
-
-def post_comment(cmt_data):
-    if 'type' in cmt_data:
-        type = cmt_data['type'].split('-')
-        if type[0] == 'pc':
-            id = type[1]
-            content = cmt_data.get('content').strip()
-
-            if content != '':
-                user = User.query.filter_by(id=current_user.id).first()
-                post = InstagramPost.query.filter_by(id=id).first()
-
-                comment = Comments(content=content, created_at=datetime.now())
-
-                user.comments.append(comment)
-                db.session.add(comment)
-                db.session.commit()
-
-                post.comments.append(comment)
-                db.session.commit()
-
-                return comment
-
 
 def delete_comment():
     data = request.form['type']

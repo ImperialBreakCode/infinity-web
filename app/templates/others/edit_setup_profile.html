@@ -15,15 +15,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='icons/css/all.css') }}">
+
+    {% if title == 'Instagram • Edit profile' and current_user.dark_theme %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/dark_theme.css') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/light_theme.css') }}">
+    {% endif %}
+
+
     <link rel="stylesheet" href="{{ url_for('static', filename='other/style_edit_profile.css') }}">
     <title>{{ title }}</title>
 </head>
-<body>
+<body class="body-light">
 
 <div id="modal" class="modal fade" tabindex="-1" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content {% if current_user.set and current_user.dark_theme %} bg-dark {% endif %}">
+            <div class="modal-header {% if current_user.set and current_user.dark_theme %} border-secondary {% endif %}">
                 <h5 class="modal-title">Crop Profile Photo</h5>
             </div>
             <div class="modal-body">
@@ -31,7 +39,7 @@
                     <img id="cropper-img" src="">
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer {% if current_user.set and current_user.dark_theme %} border-secondary {% endif %}">
                 <button id="cancel-crop" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button id="done-crop" type="button" class="btn btn-primary">Done</button>
             </div>
@@ -54,7 +62,7 @@
 
     {% if title == 'Instagram • Edit profile' %}
 
-        {{ edit_form(form, image) }}
+        {{ edit_form(form, image, from_page) }}
 
     {% elif title == 'Setup account' %}
 

@@ -71,10 +71,10 @@
                     </div>
                 {% endif %}
 
+                <a id="sample-cmt-{{ post.id }}" class="view-comments d-none" href="{{ url_for('instagram.post', id=post.id, from_page='h') }}">View all 0 comments</a>
+
                 {% if len(post.comments) != 0 %}
                     <a id="link-cmt-{{ post.id }}" class="view-comments" href="{{ url_for('instagram.post', id=post.id, from_page='h') }}">View all {{ len(post.comments) }} comments</a>
-                {% elif len(post.comments) == 1 %}
-                    <a id="link-cmt-{{ post.id }}" class="view-comments" href="{{ url_for('instagram.post', id=post.id, from_page='h') }}">View all {{ len(post.comments) }} comment</a>
                 {% endif %}
             </div>
 

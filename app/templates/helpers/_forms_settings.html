@@ -1,6 +1,6 @@
 {% macro changePassForm(form) %}
 
-    <form method="POST" action="" novalidate>
+    <form method="POST" action="">
         {{ form.csrf_token }}
         <div class="mb-3">
             <label for="{{ form.current_pass.id }}" class="form-label">{{ form.current_pass.label.text }}</label>

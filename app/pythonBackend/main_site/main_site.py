@@ -98,7 +98,7 @@ def about():
 
         flash('message sent')
 
-        return redirect(url_for('mainSite.about'))
+        return redirect(url_for('mainSite.about') + '#msg')
 
     return render_template('main_site/pages/main_site_about.html', title=' • About', contact_form=contact_form, logged=set_logged())
 

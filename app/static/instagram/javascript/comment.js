@@ -60,29 +60,21 @@ $(document).ready(function () {
         }
     });
 
-    $('.di-cmt').click(function (event) {
+    $('body').on('click', '.di-cmt', function (event) {
         deleteComment(event);
 
         let comment_id = event.target.id.split('-')[1];
         let select = '#comment-' + comment_id;
         $(select).remove();
+
+        let counterElement = $('h4');
+        let text = counterElement.html();
+        let counter = parseInt(text.split(' ')[2]);
+        counter--;
+        counterElement.html(`Comments • ${counter}`);
     });
 
 });
-
-
-function postCommentOnly(event) {
-    let input = event.target.parentElement.children[1];
-
-    let data = new FormData();
-    data.append('type', input.id);
-    data.append('content', input.value);
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', '');
-    xhr.send(data);
-    input.value = '';
-}
 
 function deleteComment(event) {
 
@@ -99,7 +91,7 @@ async function postCommentReturnId(event) {
 
     let id;
 
-    await fetch(window.location.url, {
+    await fetch('/fre-api/pc', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -112,6 +104,8 @@ async function postCommentReturnId(event) {
         return response.json();
     }).then(json => {
         id = parseInt(json.id);
+    }).catch(reason => {
+        id = null
     });
 
     return id
@@ -121,10 +115,14 @@ async function postCommentReturnId(event) {
 function postComment(event) {
     let path = window.location.pathname;
 
-    if (path.substr(0, 16) === '/instagram/post/') {
+    $('.no-comments').remove();
+    postCommentReturnId(event).then(cId => {
 
-        $('.no-comments').remove();
-        postCommentReturnId(event).then(cId => {
+        if (cId == null){
+            return 0;
+        }
+
+        if (path.substr(0, 16) === '/instagram/post/') {
 
             let sample = $('#comment-sample').clone();
             sample.attr('id', `comment-${cId}`);
@@ -135,10 +133,37 @@ function postComment(event) {
             sample.removeClass('d-none');
             $('.comment-section').append(sample);
 
-            event.target.parentElement.children[1].value = ''
-        });
+            let counterElement = $('h4');
+            let text = counterElement.html();
+            let counter = parseInt(text.split(' ')[2]);
+            counter++;
+            counterElement.html(`Comments • ${counter}`);
 
-    } else {
-        postCommentOnly(event);
-    }
+        } else {
+
+            let psId = event.target.closest('.post').id.split('-')[1];
+            let select = '#link-cmt-' + psId;
+
+            if(!$(select).length == 0){
+
+                let text = $(select).html();
+                let num = parseInt(text.split(' ')[2]);
+                num++;
+                text = `View all ${num} comments`;
+                $(select).html(text);
+
+            } else {
+
+                select = '#sample-cmt-' + psId;
+                let sampleLink = $(select);
+                sampleLink.attr('id', `link-cmt-${psId}`);
+                sampleLink.html('View all 1 comments');
+                sampleLink.removeClass('d-none');
+
+            }
+        }
+
+        event.target.parentElement.children[1].value = ''
+
+    });
 }

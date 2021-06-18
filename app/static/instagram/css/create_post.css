@@ -57,23 +57,23 @@ body{
 
 .buttons input{
     background: #1426ff;
-    box-shadow: 0 5px 20px #1426ffe6;
+    box-shadow: 0 5px 9px #1426ff75;
 }
 
 .buttons a{
     padding: 13px 20px;
     background: #e00000;
-    box-shadow: 0 5px 20px #e00000e6;
+    box-shadow: 0 5px 9px #e0000075;
 }
 
 .buttons input:hover{
     background: #2737f5;
-    box-shadow: 0 10px 20px #1426ffe6;
+    box-shadow: 0 4px 20px #1426ff;
 }
 
 .buttons a:hover{
     background: #ff1717;
-    box-shadow: 0 10px 20px #e00000e6;
+    box-shadow: 0 5px 20px #e00000;
 }
 
 @media (max-width: 1200px) {
