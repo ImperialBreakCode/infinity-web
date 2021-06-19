@@ -8,13 +8,13 @@ class SetupEditForm(FlaskForm):
         'class': 'form-control form-control-lg dark-input',
         'accept': 'image/*'
     })
-    name = StringField('Name *', id='account-name', validators=[DataRequired()], render_kw={
+    name = StringField('Name', id='account-name', validators=[DataRequired()], render_kw={
         'class': 'form-control dark-input'
     })
-    followers = IntegerField('Number of followers *', id='followers-input', validators=[DataRequired(), NumberRange(min=0, max=999999999)], render_kw={
+    followers = IntegerField('Number of followers', id='followers-input', validators=[DataRequired(), NumberRange(min=0, max=999999999)], render_kw={
         'class': 'form-control dark-input'
     })
-    following = IntegerField('Number of following *', id='following-input', validators=[DataRequired(), NumberRange(min=0, max=999999999)], render_kw={
+    following = IntegerField('Number of following', id='following-input', validators=[DataRequired(), NumberRange(min=0, max=999999999)], render_kw={
         'class': 'form-control dark-input'
     })
     bio = TextAreaField('Bio', id='account-bio', render_kw={

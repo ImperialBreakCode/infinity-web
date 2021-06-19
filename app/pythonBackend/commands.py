@@ -1,4 +1,5 @@
 from flask import Blueprint
+import os
 
 from .. import db
 from .models import User, def_image
@@ -10,14 +11,14 @@ bp_command = Blueprint('main-cmd', __name__)
 
 @bp_command.cli.command('su-create')
 def create_su():
-    email = 'admin@infinity.acc'
-    password = 'georgia123'
+    email = os.environ['SUPER_USER_EMAIL']
+    password = os.environ['SUPER_USER_PASS']
 
     if User.query.filter_by(email=email).first() is None:
         super_user = User(email=email, password=password, admin=True, set=False, created_at=datetime.datetime.now())
         db.session.add(super_user)
 
-        prf_pic = def_image(super_user.id)
+        prf_pic = def_image()
         super_user.profile_pic = prf_pic
         db.session.add(prf_pic)
 
@@ -26,6 +27,18 @@ def create_su():
         print('done')
     else:
         print('already exists')
+
+
+@bp_command.cli.command('su-reset')
+def reset_su():
+    email = os.environ['SUPER_USER_EMAIL']
+
+    su = User.query.filter_by(email=email).first()
+    su.password = os.environ['SUPER_USER_PASS']
+
+    db.session.commit()
+
+    print('done')
 
 
 @bp_command.cli.command('tb-create')

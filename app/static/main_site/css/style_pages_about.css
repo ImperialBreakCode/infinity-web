@@ -1,6 +1,7 @@
 .first-sec{
     position: relative;
-    height: 80vh;
+    padding-top: 15vh;
+    padding-bottom: 10vh;
     background: url("../images/code.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -36,9 +37,18 @@ footer{
     background: #151515;
 }
 
+.about-stats{
+    display: flex;
+    flex-direction: row;
+}
+
 @media (max-width: 991px) {
     .second-sec{
         padding: 100px 5%;
+    }
+
+    .first-sec{
+        font-size: 70%;
     }
 }
 
