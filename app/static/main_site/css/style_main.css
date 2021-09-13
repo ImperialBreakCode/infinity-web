@@ -100,6 +100,7 @@ footer p{
 .bg-dark{
     background-color: #212529b8!important;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .sec-1{

@@ -24,6 +24,7 @@
 .nv-light{
     box-shadow: 0 0 0;
     backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     background-color: var(--back-color-block);
 }
 
