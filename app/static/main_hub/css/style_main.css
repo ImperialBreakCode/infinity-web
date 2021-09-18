@@ -12,6 +12,7 @@ main{
     border-radius: 17px;
     box-shadow: 0 0 20px black;
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 .size-i{
     font-size: 6em;
