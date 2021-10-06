@@ -1,0 +1,29 @@
+<main class="h-100">
+
+        <span class="blur"></span>
+
+        <div>
+            <span class="circle-left"></span>
+            <span class="circle-right"></span>
+            <span class="rect-glass-1"></span>
+            <span class="rect-glass-2"></span>
+            <span class="circle-glass"></span>
+            <div class="square-glass"></div>
+        </div>
+
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-6">
+                    <div class="txt-central">
+                        <h1 class="title">Solaris</h1>
+                        <p class="p-text-home">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ac sodales sapien. Aliquam erat volutpat. Cras ut nunc tortor. Ut luctus justo dui, et accumsan ipsum viverra nec. Fusce et lorem felis. Curabitur nec porta purus. Mauris sit amet placerat magna. Maecenas at eleifend arcu, et efficitur lorem. Pellentesque id dui tincidunt, volutpat quam dictum, pulvinar quam. Maecenas aliquam magna ut odio pretium porttitor.
+                        </p>
+                    </div> 
+                </div>
+                <div class="col-6">
+
+                </div>
+            </div>
+        </div>
+    </main>

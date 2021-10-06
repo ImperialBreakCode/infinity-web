@@ -67,9 +67,15 @@ def create_app():
     from .pythonBackend.other.other_routes import other
     app.register_blueprint(other)
 
+    from .pythonBackend.solaris.solaris import sol
+    app.register_blueprint(sol)
+
     # registering apis
     from .pythonBackend.api.api_for_front_end import front_end_api
     app.register_blueprint(front_end_api)
+
+    from .pythonBackend.api.solaris_api import solaris_api_bp
+    app.register_blueprint(solaris_api_bp)
 
     # registering command blueprints
     from .pythonBackend.commands import bp_command

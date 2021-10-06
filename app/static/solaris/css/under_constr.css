@@ -1,0 +1,46 @@
+:root{
+    --default-font-color:white;
+    --home-background: #010017;
+}
+
+*{
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--default-font-color);
+}
+
+body{
+    background: var(--home-background);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.under-costr-sign{
+    padding: 10%;
+    background: #ffffff2f;
+    border-radius: 20px;
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid #ffffff50;
+    border-top-color: #ffffff18;
+    border-right-color: #ffffff18;
+    box-shadow: 0 0 100px 7px #00000075;
+    z-index: 10;
+}
+
+.under-costr-sign h3{
+    color: #ffffff;    
+}
+
+.svg-blob{
+    z-index: -10;
+    position: absolute;
+    left: 10%;
+}
