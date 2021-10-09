@@ -19,9 +19,17 @@ body{
     overflow: hidden;
 }
 
+header{
+    position: absolute;
+    width: 100vw;
+}
+
 main{
-    margin-top: 5%;
     min-width: 100vw;
+}
+
+#main-cont{
+    height: 100vh;
 }
 
 .title{
@@ -29,10 +37,6 @@ main{
     text-transform: uppercase;
     font-weight: 300;
     margin-bottom: 50px;
-}
-
-.txt-central{
-    margin-top: 10vh;
 }
 
 .p-text-home{

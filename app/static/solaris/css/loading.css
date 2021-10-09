@@ -1,0 +1,18 @@
+@import "loading/style_body_loading.css";
+
+main{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background: linear-gradient(45deg, #03001c, #0e0010);
+}
+.d1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}

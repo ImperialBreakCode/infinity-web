@@ -20,19 +20,14 @@ $('.navlink').click(function(event){
 
     //getting page resources
     if(currentloc != this.innerHTML){
+
+        namePage = this.innerHTML.replace(' ', '-');
         
-        fetch(`/solaris-api/pages/${this.innerHTML}`).then(response => {
+        fetch(`/solaris-api/pages/${namePage}`).then(response => {
             return response.json();
         }).then(json => {
 
-            while ($('head').children().length > headCount) {
-                $('head').children().last().remove();
-            }
-
-            if(json.css_link != ''){
-                css = $('<link>').attr('rel', 'stylesheet').attr('href', json.css_link);
-                $('head').last().append(css);
-            }
+            addCss(json.css_link);
 
             $('main').hide('puff', 600);
 
@@ -41,6 +36,17 @@ $('.navlink').click(function(event){
                 $('#main-cont').append(json.main).hide();
 
                 $('#main-cont').show('puff', 600);
+
+                setTimeout(() => {
+
+                    while ($('head').children().length > headCount) {
+                        $('head').children().last().remove();
+                    }
+
+                    addCss(json.css_link);
+
+                }, 700);
+
             }, 700);
 
             currentloc = this.innerHTML;
@@ -49,3 +55,14 @@ $('.navlink').click(function(event){
     }
 
 });
+
+
+function addCss(cssLink) {
+    
+    if(cssLink != ''){
+
+        css = $('<link>').attr('rel', 'stylesheet').attr('href', cssLink);
+        $('head').last().append(css);
+    }
+
+}

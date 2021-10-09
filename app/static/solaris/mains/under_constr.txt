@@ -1,9 +1,9 @@
-<main class="h-75 main-2">
+<main class="h-100 main-2">
         <span class="under-costr-sign">
             <h3>Under Construction</h3>
         </span>
 
-        <svg class="svg-blob" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50%" id="blobSvg">
+        <svg class="svg-blob" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="blobSvg">
             <defs>
               <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" style="stop-color: rgb(72, 0, 255);"></stop>

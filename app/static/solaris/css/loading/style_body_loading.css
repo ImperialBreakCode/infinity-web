@@ -1,0 +1,65 @@
+.d1{
+    height: 200px;
+    width: 200px;
+}
+.d1 span:nth-child(1){
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    background: linear-gradient(180deg, #14ffe9, #ffeb3e, #ff00e0);
+    border-radius: 50%;
+    z-index: -1;
+    animation: rot 0.5s linear infinite;
+}
+.d1 span:nth-child(2){
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    background: #070017;
+    border-radius: 50%;
+    z-index: 1;
+}
+.d1 span:nth-child(3){
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg, #14ffe9, #ffeb3e, #ff00e0);
+    border-radius: 50%;
+    filter: blur(5px);
+    animation: rot 0.5s linear infinite;
+}
+.d1 span:nth-child(4){
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg, #14ffe9, #ffeb3e, #ff00e0);
+    border-radius: 50%;
+    filter: blur(10px);
+    animation: rot 0.5s linear infinite;
+}
+.d1 span:nth-child(5){
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg, #14ffe9, #ffeb3e, #ff00e0);
+    border-radius: 50%;
+    filter: blur(25px);
+    animation: rot 0.5s linear infinite;
+}
+.d1 span:nth-child(6){
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg, #14ffe9, #ffeb3e, #ff00e0);
+    border-radius: 50%;
+    filter: blur(50px);
+    animation: rot 0.5s linear infinite;
+}
+@keyframes rot{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}

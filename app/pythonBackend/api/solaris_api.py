@@ -7,6 +7,9 @@ solaris_api = Api(solaris_api_bp)
 
 class GetPage(Resource):
     def get(self, page):
+
+        page = page.replace('-', '_')
+
         try:
             with open(f'app/static/solaris/mains/{page}.txt') as main_content:
                 data = make_data(main_content=main_content, page_name=page)
@@ -28,4 +31,4 @@ def make_data(main_content, page_name):
     else:
         css = f'/static/solaris/css/{page_name}.css'
 
-    return {'main': main, 'css_link': css}
+    return {'main': main, 'css_link': css, 'javascript_link': ''}
