@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, make_response, jsonify
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
-from datetime import datetime
+from datetime import datetime, timezone
 import math
 
 from ..other.setup_edit_form import SetupEditForm
@@ -83,7 +83,7 @@ def create_post():
         img = cr_post.image.data
         img = covert_image_post(image=img, filename=secure_filename(img.filename))
 
-        insta_post = InstagramPost(created_at=datetime.now(),
+        insta_post = InstagramPost(created_at=datetime.now(tz=timezone.utc),
                                    caption=caption,
                                    image_name=img[2],
                                    mime_type=img[1],

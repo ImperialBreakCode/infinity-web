@@ -19,10 +19,10 @@ $('.dropdown-btn').click(function(){
 
     }
 
-    $('.navlink-d').click(function (){
-        btn.click();
-    });
+});
 
+$('.navlink-d').click(function (){
+        btn.click();
 });
 
 $('.dropdown-btn').click(function (event) {

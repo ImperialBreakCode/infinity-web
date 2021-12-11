@@ -77,6 +77,12 @@ def create_app():
     from .pythonBackend.api.solaris_api import solaris_api_bp
     app.register_blueprint(solaris_api_bp)
 
+    from .pythonBackend.api.main_api_login import main_api_login_bp
+    app.register_blueprint(main_api_login_bp)
+
+    from .pythonBackend.api.main_api import api_blueprint
+    app.register_blueprint(api_blueprint)
+
     # registering command blueprints
     from .pythonBackend.commands import bp_command
     app.register_blueprint(bp_command)

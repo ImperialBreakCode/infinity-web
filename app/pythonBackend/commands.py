@@ -2,7 +2,7 @@ from flask import Blueprint
 import os
 
 from .. import db
-from .models import User, def_image
+from .models import User, ApiLoginRequest, def_image
 import datetime
 
 
@@ -60,3 +60,11 @@ def settings_populate():
         db.session.commit()
 
     print('populated')
+
+
+@bp_command.cli.command('api-req-lg-clear')
+def clear_api_login_req():
+    date_now = datetime.datetime.now()
+    ApiLoginRequest.query.filter(ApiLoginRequest.expire_date < date_now).delete()
+    db.session.commit()
+    print('done')

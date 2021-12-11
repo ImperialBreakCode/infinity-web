@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint
 from flask_restful import Api, Resource
 
 solaris_api_bp = Blueprint('solaris_api', __name__, url_prefix='/solaris-api')

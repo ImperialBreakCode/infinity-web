@@ -19,10 +19,9 @@
                      <p class="card-text mt-3">{{ article.content | safe }}</p>
                  </div>
                  <div class="card-footer text-muted text-center">
-                     {% set date_list = article.created_at.split(' ') %}
-                     {% set time = date_list[1].split('.') %}
+                     {% set date = article.created_at %}
                      Made by: {{ article.user.email }}<br>
-                     {{ date_list[0] }} at {{ time[0] }} (WET)
+                     <p class="dt" style="margin: 0">{{ date.timestamp() * 1000 }}</p>
                  </div>
              </div>
 

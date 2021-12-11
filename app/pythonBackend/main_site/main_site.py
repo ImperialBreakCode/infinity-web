@@ -115,7 +115,7 @@ def create_article():
         content = cr_article.content.data
 
         user = User.query.filter_by(id=current_user.id).first()
-        article = Article(title=title, content=content, created_at=datetime.datetime.now())
+        article = Article(title=title, content=content, created_at=datetime.datetime.now(tz=datetime.timezone.utc))
         user.articles.append(article)
 
         db.session.add(article)
