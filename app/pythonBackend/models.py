@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import base64
 
 from .. import db, login_manager
+from .infinity_library import ModelToDict
 
 
 #
@@ -32,7 +33,7 @@ class User(db.Model, UserMixin):
     following = db.Column(db.Integer)
 
     # when is created
-    created_at = db.Column(db.String(50), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
 
     # relations
     profile_pic = db.relationship('UserProfilePic', backref='user', lazy=True, uselist=False)
@@ -79,10 +80,10 @@ class UserProfilePic(db.Model):
 #
 #
 
-class InstagramPost(db.Model):
+class InstagramPost(ModelToDict, db.Model):
     __tablename__ = 'instagram_post'
     id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
-    created_at = db.Column(db.String(50), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
     caption = db.Column(db.Text)
     image_name = db.Column(db.Text, nullable=False)
     mime_type = db.Column(db.String(50), nullable=False)
@@ -93,16 +94,25 @@ class InstagramPost(db.Model):
     def __str__(self):
         return 'Post: {0} User: {1}'.format(self.id, self.user_id)
 
+    def to_dictionary(self):
+        obj_dict = super().to_dictionary()
+        list_comments = []
+        for comment in self.comments:
+            list_comments.append(comment.to_dictionary())
+        obj_dict['comments'] = list_comments
+
+        return obj_dict
+
 
 # comment model
 #
 #
 
-class Comments(db.Model):
+class Comments(ModelToDict, db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
     content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.String(50), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('instagram_post.id'))
 
@@ -116,8 +126,19 @@ class Article(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.String(50), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+
+# admin api login model
+#
+#
+
+class ApiLoginRequest(db.Model):
+    __tablename__ = 'api_login_request'
+    id = db.Column(db.Integer, unique=True, primary_key=True, index=True)
+    request_string = db.Column(db.String(50), nullable=False)
+    expire_date = db.Column(db.DateTime, nullable=False)
 
 
 #

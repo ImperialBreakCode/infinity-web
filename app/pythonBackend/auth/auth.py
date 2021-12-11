@@ -57,7 +57,7 @@ def register():
                         password=password,
                         admin=admin,
                         set=False,
-                        created_at=datetime.datetime.now()
+                        created_at=datetime.datetime.now(tz=datetime.timezone.utc)
                         )
         db.session.add(new_user)
 

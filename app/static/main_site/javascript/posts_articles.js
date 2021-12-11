@@ -1,3 +1,16 @@
+$(document).ready(function (){
+
+    elem = document.getElementsByClassName('dt');
+
+    for(let i = 0; i < elem.length; i++){
+        let ms = parseInt(elem[i].innerHTML);
+        let date = new Date(ms);
+        //ms /= 60000;
+        //ms -= date.getTimezoneOffset();
+        //newDate = new Date(ms * 60000)
+        elem[i].innerHTML = date.toString();
+    }
+});
 
 $('.delete-btn').click(function (event){
     $('#modal-del').modal('show');

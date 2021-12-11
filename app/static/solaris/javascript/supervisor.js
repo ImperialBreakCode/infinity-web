@@ -1,5 +1,5 @@
 let currentloc = 'home';
-const headCount = $('head').children().length;
+let headCount = $('head').children().length;
 
 $('.navlink').click(function(event){
     
@@ -27,40 +27,30 @@ $('.navlink').click(function(event){
             return response.json();
         }).then(json => {
 
-            addCss(json.css_link);
-
-            $('main').hide('puff', 600);
+            $('#main-cont').hide('puff', 600);
 
             setTimeout(() => {
                 $('main').remove();
-                $('#main-cont').append(json.main).hide();
+                $('#main-cont').append(json.main);
+
+                while ($('head').children().length > headCount) {
+                    $('head').children().last().remove();
+                }
+                addCss(json.css_link);
 
                 $('#main-cont').show('puff', 600);
-
-                setTimeout(() => {
-
-                    while ($('head').children().length > headCount) {
-                        $('head').children().last().remove();
-                    }
-
-                    addCss(json.css_link);
-
-                }, 700);
 
             }, 700);
 
             currentloc = this.innerHTML;
         });
-
     }
-
 });
 
 
 function addCss(cssLink) {
     
     if(cssLink != ''){
-
         css = $('<link>').attr('rel', 'stylesheet').attr('href', cssLink);
         $('head').last().append(css);
     }

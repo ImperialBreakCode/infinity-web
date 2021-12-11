@@ -1,6 +1,6 @@
 from flask import Blueprint, url_for, make_response, jsonify, request
 from flask_login import login_required, current_user
-from datetime import datetime
+from datetime import datetime, timezone
 
 from ..infinity_library import setup_acc_required
 from ..models import User, InstagramPost, Comments
@@ -52,7 +52,7 @@ def post_comment(cmt_data):
                 user = User.query.filter_by(id=current_user.id).first()
                 post = InstagramPost.query.filter_by(id=id).first()
 
-                comment = Comments(content=content, created_at=datetime.now())
+                comment = Comments(content=content, created_at=datetime.now(tz=timezone.utc))
 
                 user.comments.append(comment)
                 db.session.add(comment)
