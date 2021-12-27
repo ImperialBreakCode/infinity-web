@@ -28,7 +28,7 @@ def home():
                     db.session.commit()
 
     all_users = User.query.all()
-    posts = InstagramPost.query.all()
+    posts = InstagramPost.query.order_by(InstagramPost.created_at.desc()).all()
     posts_len = len(posts)
 
     return render_template('instagram/pages/home.html', title='', logged=set_logged(), users=all_users, math=math, posts=posts, posts_len=posts_len, len=len)
@@ -56,18 +56,17 @@ def shop():
 @login_required
 @setup_acc_required
 def my_profile():
-    posts = current_user.instagram_posts
+    posts = InstagramPost.query.filter_by(user_id=current_user.id).order_by(InstagramPost.created_at.desc()).all()
 
-    calculated_data = calculate_posts_and_rows(posts)
+    rows = calculate_rows(posts)
 
     return render_template('instagram/pages/my_profile.html',
                            title=' • My Profile',
                            logged=True,
                            user=current_user,
                            math=math,
-                           rows=calculated_data[1],
+                           rows=rows,
                            posts=posts,
-                           posts_on_row=calculated_data[0],
                            len=len
                            )
 
@@ -113,9 +112,10 @@ def user_profile(id):
             return redirect(url_for('instagram.my_profile'))
 
         if current_user.is_authenticated or not user.private_profile:
-            posts = user.instagram_posts
+            # posts = user.instagram_posts
+            posts = InstagramPost.query.filter_by(user_id=user.id).order_by(InstagramPost.created_at.desc()).all()
 
-            calculated_data = calculate_posts_and_rows(posts)
+            rows = calculate_rows(posts)
 
             return render_template('instagram/pages/my_profile.html',
                                    title='• {0}'.format(user.name),
@@ -123,8 +123,7 @@ def user_profile(id):
                                    user=user,
                                    math=math,
                                    posts=posts,
-                                   rows=calculated_data[1],
-                                   posts_on_row=calculated_data[0],
+                                   rows=rows,
                                    len=len
                                    )
 
@@ -214,18 +213,8 @@ def delete_comment():
             db.session.commit()
 
 
-def calculate_posts_and_rows(posts):
+def calculate_rows(posts):
     posts_count = len(posts)
     rows = math.ceil(posts_count / 3)
-    last_row_ps = posts_count - (rows - 1) * 3
-    posts_on_row = []
 
-    post_index_fist = 0
-    for r in range(rows):
-        if r == 0:
-            post_index_fist += last_row_ps - 1
-        else:
-            post_index_fist += 3
-        posts_on_row.append(post_index_fist)
-
-    return [posts_on_row, rows]
+    return rows

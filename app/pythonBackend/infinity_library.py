@@ -1,14 +1,13 @@
 import datetime
-
 from flask import redirect, url_for, request
 from flask_login import current_user
 from functools import wraps
 from PIL import Image
 from urllib.parse import quote
-from jwt import exceptions
-import io, os
+import io
+import os
 import base64
-import jwt
+import jwt, jwe
 
 
 class ModelToDict:
@@ -43,6 +42,8 @@ def setup_acc_required(func):
 def validate_jwt():
     token = request.args.get('token')
     if token:
+        key_jwe = jwe.kdf(os.environ['SECRET_KEY'].encode(), os.environ['SALT'].encode())
+        token = jwe.decrypt(token.encode(), key_jwe).decode()
         public_key = os.environ['PUBLIC_KEY']
         try:
             decoded = jwt.decode(token, public_key, algorithms=['RS256'], options={'require': ['exp', 'email']})

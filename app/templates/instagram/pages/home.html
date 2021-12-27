@@ -126,9 +126,9 @@
                     </div>
 
                     <div>
-                        {% for p in range(-posts_len + 1 , 1) %}
-                            {% if logged or not posts[-p].user.private_profile %}
-                                {{ post(posts[-p], current_user, len) }}
+                        {% for p in range(posts_len) %}
+                            {% if logged or not posts[p].user.private_profile %}
+                                {{ post(posts[p], current_user, len) }}
                             {% endif %}
                         {% endfor %}
                     </div>

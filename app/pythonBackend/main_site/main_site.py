@@ -56,11 +56,12 @@ def posts():
 
     # getting the posts and articles
     if from_acc == 'All':
-        posts = InstagramPost.query.all()
-        articles = Article.query.all()
+        posts = InstagramPost.query.order_by(InstagramPost.created_at).all()
+        articles = Article.query.order_by(Article.created_at).all()
     else:
-        posts = User.query.filter_by(email=from_acc).first().instagram_posts
-        articles = User.query.filter_by(email=from_acc).first().articles
+        from_acc = User.query.filter_by(email=from_acc).first()
+        posts = InstagramPost.query.filter_by(user_id=from_acc.id).order_by(InstagramPost.created_at).all()
+        articles = Article.query.filter_by(user_id=from_acc.id).order_by(Article.created_at).all()
 
     # rendering html content
     return render_template('main_site/pages/main_site_posts.html',

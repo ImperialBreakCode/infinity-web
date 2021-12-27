@@ -88,16 +88,16 @@
 
             <div class="container">
 
-                {% for r in range(1 - rows, 1) %}
+                {% for r in range(rows) %}
                     <div class="row post-r">
-                        {% if r == 0 %}
-                            {% for i in range(-posts_on_row[-r], 1) %}
-                                {{ post_thumbnail(posts[-i], len) }}
+                        {% if r == rows - 1 %}
+                            {% for i in range(r * 3, len(posts)) %}
+                                {{ post_thumbnail(posts[i], len) }}
                             {% endfor %}
                         {% else %}
 
-                            {% for i in range(-posts_on_row[-r], -posts_on_row[-r] + 3) %}
-                                {{ post_thumbnail(posts[-i], len) }}
+                            {% for i in range(r * 3, r * 3 + 3) %}
+                                {{ post_thumbnail(posts[i], len) }}
                             {% endfor %}
 
                         {% endif %}

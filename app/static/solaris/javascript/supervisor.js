@@ -6,7 +6,6 @@ $('.navlink').click(function(event){
     //preventing default function
     event.preventDefault();
 
-    //damn he tweaking
     //changing active link
     $('.nv-active').removeClass('nv-active');
     this.classList.add('nv-active');
@@ -18,12 +17,15 @@ $('.navlink').click(function(event){
         $('#second-link-nv').html('glassmorphism').removeClass('nv-active');
     }
 
-    //getting page resources
-    if(currentloc != this.innerHTML){
+    var destination = this.href.split('/');
+    destination = destination[destination.length - 1];
 
-        namePage = this.innerHTML.replace(' ', '-');
+    //getting page resources
+    if(currentloc != destination){
+
+        console.log(destination);
         
-        fetch(`/solaris-api/pages/${namePage}`).then(response => {
+        fetch(`/solaris-api/pages/${destination}`).then(response => {
             return response.json();
         }).then(json => {
 
@@ -42,7 +44,7 @@ $('.navlink').click(function(event){
 
             }, 700);
 
-            currentloc = this.innerHTML;
+            currentloc = destination;
         });
     }
 });

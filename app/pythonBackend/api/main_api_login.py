@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_restful import Api, Resource
-import datetime, jwt, base64, random, os
+import datetime, jwt, base64, random, os, jwe
 
 from ..models import ApiLoginRequest, User
 from ..infinity_library import generate_api_login_key
@@ -111,5 +111,8 @@ def generate_token(email, password):
         payload = {'exp': exp, 'email': user.email}
         token = jwt.encode(payload, private_key, algorithm='RS256')
 
-        return {'token': token}
+        key_jwe = jwe.kdf(os.environ['SECRET_KEY'].encode(), os.environ['SALT'].encode())
+        encoded_token = jwe.encrypt(token.encode(), key_jwe).decode()
+
+        return {'token': encoded_token}
     return False
