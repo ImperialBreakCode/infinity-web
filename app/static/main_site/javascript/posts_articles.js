@@ -4,11 +4,12 @@ $(document).ready(function (){
 
     for(let i = 0; i < elem.length; i++){
         let ms = parseInt(elem[i].innerHTML);
-        let date = new Date(ms);
+        var date = new Date(ms);
         //ms /= 60000;
         //ms -= date.getTimezoneOffset();
-        //newDate = new Date(ms * 60000)
-        elem[i].innerHTML = date.toString();
+        //date = new Date(ms * 60000)
+        var formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} at ${date.getHours()}:${date.getMinutes()}`;
+        elem[i].innerHTML = formattedDate;
     }
 });
 
