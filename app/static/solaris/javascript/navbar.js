@@ -1,3 +1,5 @@
+let btn;
+
 $('.dropdown-btn').click(function(){
 
     btn = $(this);
@@ -19,10 +21,6 @@ $('.dropdown-btn').click(function(){
 
     }
 
-});
-
-$('.navlink-d').click(function (){
-        btn.click();
 });
 
 $('.dropdown-btn').click(function (event) {
@@ -62,6 +60,11 @@ $('.dropdown-btn').click(function (event) {
         });
         
     }
-    
 
+});
+
+$('.navlink-d').click(function (){
+    if(btn){
+        btn.click();
+    }
 });

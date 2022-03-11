@@ -1,5 +1,29 @@
-let currentloc = 'home';
+let currentloc = $('meta[name=location]').attr('content');
 let headCount = $('head').children().length;
+let scriptCount = $('script').length;
+
+
+$(document).ready(function (){
+    if (currentloc !== 'home'){
+        delete window.btn;
+
+        $('main').remove();
+
+        let link = $(`a[href="${currentloc}"]`).first();
+        currentloc = 'home';
+        link.click();
+    }
+});
+
+$('#update-url').click(function (){
+    window.location.replace(currentloc);
+});
+
+$('#copy-link').click(function (){
+    let host = window.location.hostname;
+    //let port = window.location.port;
+    navigator.clipboard.writeText(`${host}/solaris/${currentloc}`);
+})
 
 $('.navlink').click(function(event){
     
@@ -20,10 +44,19 @@ $('.navlink').click(function(event){
     var destination = this.href.split('/');
     destination = destination[destination.length - 1];
 
+    if (currentloc !== 'home' && this.id === 'second-link-nv'){
+        destination = currentloc;
+    }
+
     //getting page resources
     if(currentloc != destination){
 
         console.log(destination);
+
+        if(currentloc === 'lightsaber'){
+            let host = window.location.hostname;
+            window.location.replace(`${destination}`);
+        }
         
         fetch(`/solaris-api/pages/${destination}`).then(response => {
             return response.json();
@@ -38,7 +71,13 @@ $('.navlink').click(function(event){
                 while ($('head').children().length > headCount) {
                     $('head').children().last().remove();
                 }
+
+                while ($('script').length > scriptCount) {
+                    $('script').last().remove();
+                }
+
                 addCss(json.css_link);
+                addJavascript(json.javascript_link);
 
                 $('#main-cont').show('puff', 600);
 
@@ -57,4 +96,12 @@ function addCss(cssLink) {
         $('head').last().append(css);
     }
 
+}
+
+
+function addJavascript(javascriptLink){
+    if(javascriptLink != ''){
+        script = $(`<script></script>`).attr('src', javascriptLink);
+        $('body').last().append(script);
+    }
 }

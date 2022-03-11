@@ -100,6 +100,27 @@
     padding: 0 5%;
 }
 
+.url-control{
+    position: absolute;
+    top: 38%;
+    right: -5%;
+}
+
+.url-control button{
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    transition: 0.3s;
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    margin: 0 5px;
+}
+
+.url-control button:hover{
+    background: rgba(255, 255, 255, 0.21);
+}
+
 .mn-dr-hidden{
     opacity: 0;
     top: 60%;

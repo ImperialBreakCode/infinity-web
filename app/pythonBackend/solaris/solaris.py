@@ -5,4 +5,9 @@ sol = Blueprint('solaris', __name__, template_folder='templates', url_prefix='/s
 
 @sol.route('/')
 def solaris():
-    return render_template('Solaris.html')
+    return render_template('Solaris.html', location='home')
+
+
+@sol.route('/<page>')
+def pages(page):
+    return render_template('Solaris.html', location=page)
