@@ -105,7 +105,7 @@ else:
 def generate_token(email, password):
     user = User.query.filter_by(email=email).first()
 
-    if user is not None and user.check_password(password=password):
+    if user is not None and user.check_password(password=password) and user.admin:
         exp = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(minutes=10)
         private_key = os.environ['PRIVATE_KEY']
         payload = {'exp': exp, 'email': user.email}
