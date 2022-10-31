@@ -1,0 +1,6 @@
+<main class="h-100 main-2">
+        <div class="showcase-box">
+            <a href="https://infinity-web-57.herokuapp.com/fav-city">New York City</a>
+            <a href="https://infinity-web-57.herokuapp.com/chess">Chess Board</a>
+        </div>
+</main>

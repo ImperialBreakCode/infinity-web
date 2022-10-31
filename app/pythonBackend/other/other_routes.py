@@ -11,6 +11,16 @@ from ... import db
 other = Blueprint('other', __name__, template_folder='templates')
 
 
+@other.route('/chess')
+def chess_board():
+    return render_template('chess_board.html')
+
+
+@other.route('/fav-city')
+def fav_city():
+    return render_template('fav_city.html')
+
+
 @other.route('/get-started')
 @login_required
 def get_started():

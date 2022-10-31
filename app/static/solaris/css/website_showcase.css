@@ -1,0 +1,46 @@
+:root{
+    --default-font-color:white;
+    --home-background: #010017;
+}
+
+*{
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--default-font-color);
+}
+
+body{
+    background: var(--home-background);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.showcase-box{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.showcase-box a{
+    font-size: 25px;
+    padding: 20px 30px;
+    margin: 10px;
+    background: #22203b;
+    border: 1px solid #59559e;
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--default-font-color);
+    transition: 0.2s;
+}
+
+.showcase-box a:hover{
+    border-color: #dddddd;
+}

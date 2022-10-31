@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #d6d6d6;
+}
+
+table{
+    border: 2px solid black;
+    background: black;
+}
+
+td{
+    border: 1px solid black;
+    width: 8vh;
+    height: 8vh;
+    padding: 1vh;
+    background: white;
+}
+
+img{
+    height: 100%;
+}
+
+.start-white td:nth-child(even){
+    background-color: #63473b;
+}
+
+.start-black td:nth-child(odd){
+    background-color: #63473b;
+}

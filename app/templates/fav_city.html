@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>New York</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='other/web_showcase/style_fav_city.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="d-flex justify-content-center">
+            <a href="https://www.google.bg/maps/@40.6976701,-74.2598667,10z">NYC Map</a>
+            <a href="https://www1.nyc.gov/">NYC Official Website</a>
+            <a href="https://new.mta.info/">MTA</a>
+        </nav>
+
+        <div class="background"></div>
+
+
+        <h1 class="title left">New</h1>
+        <h1 class="title right">York</h1>
+
+    </header>
+
+    <main>
+        <section class="landmarks">
+            <h2 id="landmarks-title">landmarks</h2>
+            <p id="landmarks-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse hendrerit consequat est. Aenean
+                ultricies tempor sapien. Sed tempus pretium vulputate. Ut tempus, ligula sit amet sollicitudin
+                consectetur, massa erat sagittis sapien, sit amet dignissim leo felis sed nunc. Donec posuere dictum
+                orci.
+            </p>
+
+            <div id="landmark-line">
+                <img src="{{ url_for('static', filename='other/web_showcase/empire.jpg') }}">
+
+                <img src="{{ url_for('static', filename='other/web_showcase/liberty.jpg') }}">
+
+                <img src="{{ url_for('static', filename='other/web_showcase/one_world.jpg') }}">
+            </div>
+
+        </section>
+
+        <section class="mta">
+            <div class="container h-100 d-flex align-items-center">
+                <div class="row">
+                    <div class="col">
+                        <h2>Public Trasport</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a viverra massa. Aenean gravida urna
+                            lectus, at vestibulum elit dignissim vitae. Vestibulum vehicula condimentum neque, scelerisque aliquet
+                            dolor vehicula et. Donec pretium pharetra nunc nec tincidunt. Aenean id felis eu nisl euismod eleifend.
+                            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam
+                            efficitur vulputate libero. Sed at fringilla tellus. Duis facilisis convallis consectetur. Nunc non
+                            convallis ex, quis molestie eros. Nulla hendrerit libero sem, vitae sollicitudin erat pulvinar non.</p>
+                        <a href="https://new.mta.info/">MTA Website</a>
+                    </div>
+                </div>
+            </div>     
+        </section>
+
+        <section class="hotels">
+
+            <h2>Hotels</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hotels</th>
+                            <th>1 nights</th>
+                            <th>2 nights</th>
+                            <th>3 nights</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <th>Hotel1</th>
+                            <td>100$</td>
+                            <td>150$</td>
+                            <td>200$</td>
+                        </tr>
+
+                        <tr>
+                            <th>Hotel2</th>
+                            <td>80$</td>
+                            <td>90$</td>
+                            <td>100$</td>
+                        </tr>
+
+                        <tr>
+                            <th>Hotel3</th>
+                            <td>40$</td>
+                            <td>60$</td>
+                            <td>100$</td>
+                        </tr>
+                    </tbody>
+            </table>
+            
+        </section>
+    </main>
+
+    <footer>
+        <p>Made by Christopher Alexander Petrov 2209011574</p>
+    </footer>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+    integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='other/web_showcase/javascript_fav_city.js') }}"></script>
+</html>
