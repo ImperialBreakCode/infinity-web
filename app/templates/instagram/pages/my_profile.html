@@ -3,120 +3,122 @@
 {% from 'instagram/macros/_my_profile_post.html' import post_thumbnail %}
 
 {% block css_head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/my_profile.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='instagram/css/my_profile.css') }}">
 {% endblock %}
 
 {% block body %}
 
-    <main class="{% if logged and current_user.dark_theme %}main-dark{% else %}main-light{% endif %}">
-        <div class="profile-view">
-            <div class="profile">
-                <div class="first-sec">
-                    <img src="data:{{ user.profile_pic.mime_type }};base64,{{ user.profile_pic.image }}">
-                    <h4>{{ user.name }}</h4>
-                    <p class="bio-acc">{{ user.bio }}</p>
-                    <span class="profile-stats">
-                        <div>
-                            <button>
-                                <h5>{{ len(posts) }}</h5>
-                                <p>Posts</p>
-                            </button>
-                            <button>
-                                {% with followers = user.followers %}
-                                    {% if followers >= 1000000 %}
-                                        <h5>{{ math.floor(followers / 1000000) }}M</h5>
-                                    {% elif followers >= 10000 %}
-                                        <h5>{{ math.floor(followers / 1000) }}K</h5>
-                                    {% else %}
-                                        <h5>{{ followers }}</h5>
-                                    {% endif %}
-                                {% endwith %}
-                                <p>Followers</p>
-                            </button>
-                            <button>
-                                {% with following = user.following %}
-                                    {% if following >= 1000000 %}
-                                        <h5>{{ math.floor(following / 1000000) }}M</h5>
-                                    {% elif following >= 10000 %}
-                                        <h5>{{ math.floor(following / 1000) }}K</h5>
-                                    {% else %}
-                                        <h5>{{ following }}</h5>
-                                    {% endif %}
-                                {% endwith %}
-                                <p>Following</p>
-                            </button>
-                        </div>
-                        {% if user == current_user %}
-                            <a href="{{ url_for('instagram.edit_profile', from_page='prf') }}" class="prf-btn">Edit Profile</a>
-                        {% elif user != current_user and logged %}
-                            <button class="follow-btn">Follow</button>
-                        {% endif %}
-                    </span>
-                </div>
-            </div>
-
-            <div class="profile-links">
-                {% if user == current_user %}
-                    <div class="for-acc">
-                        <a href="#"><i class="far fa-paper-plane icon-l"></i>Direct</a>
-                        <a href="#"><i class="far fa-bookmark icon-l"></i>Saved</a>
-                        <a href="{{ url_for('other.settings', from_site='mprf') }}"><i class="far fa-cog icon-l pi"></i>Settings</a>
+<main class="{% if logged and current_user.dark_theme %}main-dark{% else %}main-light{% endif %}">
+    <div class="profile-view">
+        <div class="profile">
+            <div class="first-sec">
+                <img src="data:{{ user.profile_pic.mime_type }};base64,{{ user.profile_pic.image }}">
+                <h4>{{ user.name }}</h4>
+                <p class="bio-acc">{{ user.bio }}</p>
+                <span class="profile-stats">
+                    <div>
+                        <button>
+                            <h5>{{ len(posts) }}</h5>
+                            <p>Posts</p>
+                        </button>
+                        <button>
+                            {% with followers = user.followers %}
+                            {% if followers >= 1000000 %}
+                            <h5>{{ math.floor(followers / 1000000) }}M</h5>
+                            {% elif followers >= 10000 %}
+                            <h5>{{ math.floor(followers / 1000) }}K</h5>
+                            {% else %}
+                            <h5>{{ followers }}</h5>
+                            {% endif %}
+                            {% endwith %}
+                            <p>Followers</p>
+                        </button>
+                        <button>
+                            {% with following = user.following %}
+                            {% if following >= 1000000 %}
+                            <h5>{{ math.floor(following / 1000000) }}M</h5>
+                            {% elif following >= 10000 %}
+                            <h5>{{ math.floor(following / 1000) }}K</h5>
+                            {% else %}
+                            <h5>{{ following }}</h5>
+                            {% endif %}
+                            {% endwith %}
+                            <p>Following</p>
+                        </button>
                     </div>
-                {% endif %}
-                <div class="nav-links">
-                    <a href="{{ url_for('instagram.home') }}"><i class="far fa-home-alt icon-l pi"></i>Home</a>
-                    <a href="{{ url_for('instagram.explore') }}"><i class="far fa-compass icon-l"></i>Explore</a>
-                    <a href="{{ url_for('instagram.reels') }}"><i class="fas fa-film icon-l"></i>Reels</a>
-                    <a href="{{ url_for('instagram.shop') }}"><i class="far fa-shopping-bag icon-l pi"></i>Shop</a>
-                </div>
-                {% if user == current_user %}
-                    <div class="logout">
-                        <a href="{{ url_for('auth.logout') }}"><i class="far fa-sign-out-alt icon-l pi"></i>Log out</a>
-                    </div>
-                {% endif %}
+                    {% if user == current_user %}
+                    <a href="{{ url_for('instagram.edit_profile', from_page='prf') }}" class="prf-btn">Edit Profile</a>
+                    {% elif user != current_user and logged %}
+                    <button class="follow-btn">Follow</button>
+                    {% endif %}
+                </span>
             </div>
-
         </div>
 
-        <div class="posts block-style {% if logged and current_user.dark_theme %}block-dark{% else %}block-light{% endif %}">
-
-            {% if not posts %}
-                <div class="no-posts">
-                    <h1 class="no-posts">No Posts</h1>
-                </div>
+        <div class="profile-links">
+            {% if user == current_user %}
+            <div class="for-acc">
+                <a href="#"><i class="far fa-paper-plane icon-l"></i>Direct</a>
+                <a href="#"><i class="far fa-bookmark icon-l"></i>Saved</a>
+                <a href="{{ url_for('other.settings', from_site='mprf') }}"><i
+                        class="fa-solid fa-cog icon-l"></i>Settings</a>
+            </div>
             {% endif %}
+            <div class="nav-links">
+                <a href="{{ url_for('instagram.home') }}"><i class="fa-solid fa-house icon-l"></i>Home</a>
+                <a href="{{ url_for('instagram.explore') }}"><i class="far fa-compass icon-l"></i>Explore</a>
+                <a href="{{ url_for('instagram.reels') }}"><i class="fas fa-film icon-l"></i>Reels</a>
+                <a href="{{ url_for('instagram.shop') }}"><i class="fa-solid fa-shopping-bag icon-l"></i>Shop</a>
+            </div>
+            {% if user == current_user %}
+            <div class="logout">
+                <a href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-sign-out-alt icon-l"></i>Log out</a>
+            </div>
+            {% endif %}
+        </div>
 
-            <div class="container">
+    </div>
 
-                {% for r in range(rows) %}
-                    <div class="row post-r">
-                        {% if r == rows - 1 %}
-                            {% for i in range(r * 3, len(posts)) %}
-                                {{ post_thumbnail(posts[i], len) }}
-                            {% endfor %}
-                        {% else %}
+    <div
+        class="posts block-style {% if logged and current_user.dark_theme %}block-dark{% else %}block-light{% endif %}">
 
-                            {% for i in range(r * 3, r * 3 + 3) %}
-                                {{ post_thumbnail(posts[i], len) }}
-                            {% endfor %}
+        {% if not posts %}
+        <div class="no-posts">
+            <h1 class="no-posts">No Posts</h1>
+        </div>
+        {% endif %}
 
-                        {% endif %}
-                    </div>
+        <div class="container">
+
+            {% for r in range(rows) %}
+            <div class="row post-r">
+                {% if r == rows - 1 %}
+                {% for i in range(r * 3, len(posts)) %}
+                {{ post_thumbnail(posts[i], len) }}
+                {% endfor %}
+                {% else %}
+
+                {% for i in range(r * 3, r * 3 + 3) %}
+                {{ post_thumbnail(posts[i], len) }}
                 {% endfor %}
 
+                {% endif %}
             </div>
-        </div>
+            {% endfor %}
 
-    </main>
+        </div>
+    </div>
+
+</main>
 
 {% endblock %}
 
 {% block scripts %}
 
-    {% if logged and current_user.dark_theme %}
-        <script src="{{ url_for('static', filename='instagram/javascript/dark_my_profile.js') }}"></script>
-    {% else %}
-        <script src="{{ url_for('static', filename='instagram/javascript/light_my_profile.js') }}"></script>
-    {% endif %}
+{% if logged and current_user.dark_theme %}
+<script src="{{ url_for('static', filename='instagram/javascript/dark_my_profile.js') }}"></script>
+{% else %}
+<script src="{{ url_for('static', filename='instagram/javascript/light_my_profile.js') }}"></script>
+{% endif %}
 
 {% endblock %}

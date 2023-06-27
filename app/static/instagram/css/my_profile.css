@@ -178,10 +178,6 @@ main{
     width: 22px;
 }
 
-.pi{
-    font-family: "Font Awesome 5 Pro";
-}
-
 .profile-links a:hover{
     background: #0044de26;
     border: 1px solid #4343ff;
