@@ -92,8 +92,8 @@ def create_app():
     admin_panel.add_views(*model_views)
 
     # database
-    with app.app_context():
-        if not database_exists(db.engine.url):
-            db.create_all()
+    # with app.app_context():
+    #     if not database_exists(db.engine.url):
+    #         db.create_all()
 
     return app

@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+    web:
+        build: .
+        container_name: web
+        ports:
+            - 5000:5000
+        depends_on:
+            - db
+        networks:
+            - infinity-net
+    db:
+        image: postgres
+        container_name: db
+        restart: always
+        environment:
+            - POSTGRES_USER=infuser
+            - POSTGRES_PASSWORD=root
+            - POSTGRES_DB=infinity
+        ports:
+            - '5432:5432'
+        networks:
+            - infinity-net
+    pg-admin:
+        image: dpage/pgadmin4
+        container_name: pg-admin
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=email@idk.com
+            - PGADMIN_DEFAULT_PASSWORD=infinity
+        depends_on:
+            - db
+        ports:
+            - 5050:80
+        networks:
+            - infinity-net
+networks:
+    infinity-net:
