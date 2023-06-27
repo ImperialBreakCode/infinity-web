@@ -3,92 +3,93 @@
 {% from 'main_site/macros/_form_helpers.html' import contactForm %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='main_site/css/style_pages_about.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main_site/css/style_pages_about.css') }}">
 {% endblock %}
 
 
 
 {% block main %}
 
-    <main>
-        <section class="first-sec d-flex justify-content-center align-items-center">
-            <span></span>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h1 class="mb-5">About</h1>
-                        <p>The website is divided into three parts - the main site (which you are currently on),
-                            a redesigned Instagram with a few functions available, and an experimental website called Solaris.
-                            The main site allows you to create articles (ehh..) and in Instagram you
-                            can create posts, comment on them, change the UI to a dark theme and etc. Solaris showcases
-                            pages with different UI designs and effects, placed on a single url.
-                            At the moment, it only showcases a 3D lightsaber... and a loading animation... Yeah.
-                        </p>
-                        <div class="about-stats">
-                            <div class="me-5">
-                                <h4>Front End</h4>
-                                <ul>
-                                    <li>HTML + jinja2 templates</li>
-                                    <li>CSS + Bootstrap 5</li>
-                                    <li>Javascript + JQuery and JQuery UI</li>
-                                    <li>Javascript libraries:
-                                        <ul>
-                                            <li>image cropping - Cropper.js</li>
-                                            <li>3D rendering - Three.js for</li>
-                                            <li>emoji picker - Emoji-button.js</li>
-                                        </ul>
-                                    </li>
-                                    <li>images from unsplash or created with photoshop</li>
-                                    <li>vector images from unDraw and other places</li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h4>Back End</h4>
-                                <ul>
-                                    <li>Language - Python</li>
-                                    <li>Framework - Flask</li>
-                                    <li>Some libraries:</li>
+<main>
+    <section class="first-sec d-flex justify-content-center align-items-center">
+        <span></span>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="mb-5">About</h1>
+                    <p>The website is divided into three parts - the main site (which you are currently on),
+                        a redesigned Instagram with a few functions available, and an experimental website called
+                        Solaris.
+                        The main site allows you to create articles. In Instagram you
+                        can create posts, comment on them, change the UI to a dark theme, etc. Solaris showcases
+                        pages with different UI designs and effects, placed on a single url.
+                        At the moment, it only showcases a 3D lightsaber... and a loading animation... Yeah.
+                    </p>
+                    <div class="about-stats">
+                        <div class="me-5">
+                            <h4>Front End</h4>
+                            <ul>
+                                <li>HTML + jinja2 templates</li>
+                                <li>CSS + Bootstrap 5</li>
+                                <li>Javascript + JQuery and JQuery UI</li>
+                                <li>Javascript libraries:
                                     <ul>
-                                        <li>Ckeditor</li>
-                                        <li>SQLAlchemy</li>
-                                        <li>WTForms</li>
+                                        <li>image cropping - Cropper.js</li>
+                                        <li>3D rendering - Three.js</li>
+                                        <li>emoji picker - Emoji-button.js</li>
                                     </ul>
+                                </li>
+                                <li>images from unsplash or created with photoshop</li>
+                                <li>vector images from unDraw and other places</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4>Back End</h4>
+                            <ul>
+                                <li>Language - Python</li>
+                                <li>Framework - Flask</li>
+                                <li>Some libraries:</li>
+                                <ul>
+                                    <li>Ckeditor</li>
+                                    <li>SQLAlchemy</li>
+                                    <li>WTForms</li>
                                 </ul>
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="msg" class="second-sec">
-            <div class="container">
-                <div class="row">
-                    <div class="col w-80">
+    <section id="msg" class="second-sec">
+        <div class="container">
+            <div class="row">
+                <div class="col w-80">
 
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                {% for message in messages %}
-                                    <div class="custom-al alert alert-success d-flex align-items-center justify-content-center"
-                                         role="alert">
-                                        <i class="fas fa-check-circle me-4" style="margin-right: 0.4rem"></i>
-                                        <div>
-                                            {{ message }}
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
-                        {% endwith %}
-
-                        <h2 class="text-center mb-5">Contact</h2>
-
-                        {{ contactForm(contact_form) }}
-
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="custom-al alert alert-success d-flex align-items-center justify-content-center"
+                        role="alert">
+                        <i class="fas fa-check-circle me-4" style="margin-right: 0.4rem"></i>
+                        <div>
+                            {{ message }}
+                        </div>
                     </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <h2 class="text-center mb-5">Contact</h2>
+
+                    {{ contactForm(contact_form) }}
+
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
 {% endblock %}

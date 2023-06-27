@@ -10,7 +10,6 @@ import { FXAAShader } from 'https://cdn.skypack.dev/three@0.132/examples/jsm/sha
 import { createLightsaberHilt } from './lightsaber_hilt.js';
 import { RoomEnvironment } from './room_env.js';
 
-
 let scene, camera, renderer, composer, finalComposer;
 let geometry, material;
 let hilt, blade, plane;
@@ -55,8 +54,19 @@ const colorsFlash = {
     yellow: 0x909010
 };
 
-var frameIndFlash = 0;
+function updateProgress(percent) {
 
+    document.querySelector('.prep-panel h1').textContent = percent + '%';
+    document.querySelector('.load-progress div').style.width = percent + '%';
+
+    if (percent == 100){
+        setTimeout(() => {
+            $('.prep-panel').remove();
+        }, 2000);
+    }
+}
+
+let frameIndFlash = 0;
 let animation = () => {
 
     if (bladeIsChanging) {
@@ -119,9 +129,8 @@ let animation = () => {
     render();
 }
 
-
 init();
-
+updateProgress(100);
 
 $(window).resize(function(){
     width = window.innerWidth;
@@ -157,7 +166,6 @@ function init(){
     camera.position.y = 21;
     camera.rotation.x = -0.15;
 
-
     // creating lightsaber
     hilt = createLightsaberHilt();
 
@@ -187,7 +195,6 @@ function init(){
     blade.scale.y = 0;
 
     scene.add( hilt );
-
 
     // creating background
     geometry = new THREE.PlaneGeometry( 4000, 4000, 64, 64 );

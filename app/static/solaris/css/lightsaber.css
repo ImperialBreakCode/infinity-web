@@ -1,11 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@400;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
-    font-family: 'Titillium Web', sans-serif;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Exo', sans-serif;
     font-weight: 400;
 }
 
@@ -45,131 +40,127 @@ body{
     background: #ffc400;
 }
 
-#box-help{
-    top: 30%;
+#box-help, .col-flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.close-mark{
-    position: absolute;
-    top: 6%;
-    right: 6%;
-    font-size: 35px;
-    padding: 5px 11px;
-    border-radius: 10px;
-    cursor: pointer;
+.close-help-btn{
+    font-size: 20px;
+    padding: 5px 30px;
+    margin: 20px 0;
+    border-radius: 50px;
     transition: 0.2s;
+    background: transparent;
+    border: 1px solid rgba(224, 224, 224, 0.7);
 }
 
-.close-mark:hover{
+.close-help-btn:hover{
     background: #9494943a;
+}
+
+#controls-act-zone, .saber-controls{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 10vh;
 }
 
 .saber-controls{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    position: absolute;
-    left: 0;
-    top: 35%;
-    margin: 10px;
+    justify-content: center;
+
+    height: 20vh;
 }
 
-.saber-controls button{
-    color: black;
+.main-ct-btn{
+    color: white;
     border: 1px solid #8f8f8fc0;
-    border-radius: 50%;
-    background-color: #68686875;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    width: 50px;
-    height: 50px;
-    margin: 5px 0;
+    border-radius: 50px;
+    margin: 5px;
+    padding: 10px 15px;
     transition: 0.3s;
+    background: transparent;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
 }
 
-.saber-controls button:hover{
-    background-color: #ffffffdc;
-}
-
-.saber-controls button:hover i, .control-btn-active i{
-    color: black!important;
+.main-ct-btn:hover{
+    background-color: #ffffff4c;
 }
 
 .control-btn-active{
-    background-color: #ffffff!important;
+    background-color: #ffffff;
+    color: black;
+}
+
+.control-btn-active:hover{
+    background-color: #c9c9c9;
 }
 
 .control-btn-disabled{
-    background-color: #a3a3a33b!important;
-    cursor: default!important;
-    border-color: #ffffff00!important;
-}
-
-.control-btn-disabled i{
-    color: black!important;
-} 
-
-.saber-controls button i{
-    color: #ffffff;
-    font-size: 25px;
+    opacity: 0;
 }
 
 .settings{
-    padding: 6px;
-    margin: 10px 0;
-    border-radius: 50px;
-    background-color: #68686875;
-    border: 1px solid #8f8f8fc0;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    text-align: center;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: row;
 }
 
-.settings div{
-    border-radius: 50px;
-    padding: 7px 8px;
+.settings button{
+    background: transparent;
+    padding: 8px 20px;
     transition: 0.3s;
+    border: none;
+    border-right: 1px solid #8f8f8fc0;
+}
+
+.settings button:last-child{
+    border-right: none;
 }
 
 .setting-selected{
     background-color: white;
 }
 
-.setting-selected:hover{
+.setting-selected, .settings button:active{
     background-color: #c9c9c9!important;
+    color: black;
+    font-weight: bold;
 }
 
-.setting-selected i{
-    color: black!important;
-}
-
-.settings div:hover{
+.settings button:hover{
     background-color: #b6b6b63d;
-}
-
-.settings div i{
-    padding: 2px;
-    width: 28px;
-    height: 28px;
-    color: #ffffff;
-    font-size: 25px;
 }
 
 .set-box{
     position: absolute;
-    top: 36%;
-    left: 76px;
-    background: #68686875;
-    border: 1px solid #8f8f8fc0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 20px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 20px;
+    background: #00000059;
 }
 
 .set-box h3{
     text-transform: capitalize;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+    border-top: 1px solid #ffffff38;
+    padding-top: 20px;
+}
+
+#box-color-blade h3{
+    display: inline-block;
+    margin-left: 50%;
+    transform: translate(-50%, 0);
 }
 
 .colors-row{
@@ -177,53 +168,33 @@ body{
     flex-direction: row;
     justify-content: space-evenly;
     margin: 10px;
-    margin-bottom: 0;
 }
 
 .color-box{
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 5px;
-    width: 100px;
     height: 70px;
+    width: 58px;
     cursor: pointer;
 }
 
-.color-box:hover .border-sp{
+.color-box:hover .color-vis{
+    border: 2px solid rgba(255, 255, 255, 0.52);
+}
+
+.color-box-active .color-vis{
     border: 2px solid white;
-    top: 9px;
-    left: 36px;
-}
-
-.color-box-active .border-sp{
-    border: 3px solid white;
-    top: 8px;
-    left: 35px;
-}
-
-.color-box-active:hover .border-sp{
-    border: 4px solid white;
-    top: 7px;
-    left: 34px;
 }
 
 .color-vis{
     padding: 9px;
     margin: 10px;
     background-color: white;
-    transform: rotate(45deg);
-}
-
-.border-sp{
-    position: absolute;
-    padding: 12px;
-    top: 10px;
-    left: 36.5px;
-    border: 1px solid white;
-    transform: rotate(45deg);
+    border-radius: 50%;
+    border: 2px solid transparent;
 }
 
 .color-box p{
@@ -231,70 +202,106 @@ body{
 }
 
 .intro-text{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 70vw;
     justify-content: center;
     text-align: center;
 }
 
-.intro-text h1, .description{
+.intro-text h1, .description, .css-lightsaber, #css-hilt{
     position: absolute;
     top: 25%;
     left: 50%;
     transform: translate(-50%, 0);
 }
 
+.css-lightsaber{
+    top: 43%;
+    height: 3%;
+    width: 100vw;
+}
+
+.css-lightsaber div{
+    position: relative;
+    height: 100%;
+}
+
+#intro{
+    transition: 1s background-color;
+}
+
+#css-hilt{
+    top: 0;
+    height: 100%;
+    width: 20%;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #fd3f3f;
+    background-color: #0a0a0a;
+    z-index: 10;
+}
+
+#css-saber{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 50%;
+    width: 80%;
+    border-radius: 50px;
+    background: #ffcccc;
+    z-index: 5;
+    box-shadow: 0 0 20px #ff2727, 0 0 50px #ff5959;
+    transition: 1s cubic-bezier(0.5, 0.12, 0.4, 0.94);
+}
+
 .description{
     padding: 20px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     top: 55%;
     width: 90%;
 }
 
-.description p, #continue{
-    font-family: 'Smooch Sans', sans-serif;
-    font-size: 24px;
-}
-
-.credit-link{
-    color: #85f0ff;
-    text-decoration: none;
-    transition: 0.5s;
-}
-
-.credit-link:hover{
-    text-decoration: underline;
-    color: white;
-}
-
 #continue{
     background: transparent;
-    border: 2px solid white;
+    border: 2px solid #dadada;
+    border-radius: 10px;
     padding: 10px 20px;
     margin-top: 10px;
     font-weight: 500;
+    transition: 0.2s;
 }
 
 #continue:hover{
-    background: white;
+    background: #dadada;
     color: black;
 }
 
-#intro video{
+.prep-panel{
     position: absolute;
-    width: 100vw;
+    top: 0;
+    left: 0;
     height: 100vh;
-    object-fit: cover;
-    z-index: -10;
+    width: 100vw;
+    background: #0a0a0a;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#intro{
-    z-index: 10;
+.load-progress{
+    margin-top: 10px;
+    width: 20%;
+    height: 5px;
+    border-radius: 5px;
+    background: #1a1a1a;
+}
+
+.load-progress div{
+    height: 100%;
+    width: 0;
+    background: #808080;
+    border-radius: 5px;
 }

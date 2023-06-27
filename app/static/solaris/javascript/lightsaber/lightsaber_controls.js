@@ -90,7 +90,7 @@ $('#mute-sound').click(function(){
 
 $('#blade-color-btn').click(function(){
     $('#box-color-blade').toggle({
-        effect: 'drop',
+        effect: 'fade',
         duration: 200
     });
 
@@ -102,7 +102,7 @@ $('#blade-color-btn').click(function(){
 
 $('#help-info').click(function(){
     $('#box-help').toggle({
-        effect: 'drop',
+        effect: 'fade',
         duration: 200
     });
 
@@ -116,14 +116,14 @@ $('.color-box').click(function(){
     this.classList.add('color-box-active');
 
     $('#box-color-blade').toggle({
-        effect: 'drop',
+        effect: 'fade',
         duration: 200
     });
 
     changeBladeColor(this.id);
 });
 
-$('.close-mark').click(function(){
+$('.close-help-btn').click(function(){
     $('#help-info').click();
 });
 

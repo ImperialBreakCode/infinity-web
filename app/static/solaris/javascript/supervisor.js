@@ -2,7 +2,6 @@ let currentloc = $('meta[name=location]').attr('content');
 let headCount = $('head').children().length;
 let scriptCount = $('script').length;
 
-
 $(document).ready(function (){
     if (currentloc !== 'home'){
         delete window.btn;
@@ -51,10 +50,7 @@ $('.navlink').click(function(event){
     //getting page resources
     if(currentloc != destination){
 
-        console.log(destination);
-
         if(currentloc === 'lightsaber'){
-            let host = window.location.hostname;
             window.location.replace(`${destination}`);
         }
         
@@ -92,7 +88,7 @@ $('.navlink').click(function(event){
 function addCss(cssLink) {
     
     if(cssLink != ''){
-        css = $('<link>').attr('rel', 'stylesheet').attr('href', cssLink);
+        let css = $('<link>').attr('rel', 'stylesheet').attr('href', cssLink);
         $('head').last().append(css);
     }
 
@@ -101,7 +97,8 @@ function addCss(cssLink) {
 
 function addJavascript(javascriptLink){
     if(javascriptLink != ''){
-        script = $(`<script></script>`).attr('src', javascriptLink);
+        let script = $(`<script></script>`).attr('src', javascriptLink);
+        script.attr('type', 'module');
         $('body').last().append(script);
     }
 }
