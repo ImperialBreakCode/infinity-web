@@ -75,6 +75,10 @@ input{
     border-color: #4a4a4a;
 }
 
+.dark-inverted{
+    filter: invert(0);
+}
+
 @media (max-width: 992px){
     .dropdown-dark{
         box-shadow: 0 0 0;
