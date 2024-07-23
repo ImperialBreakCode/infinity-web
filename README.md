@@ -36,7 +36,7 @@ flask main-cmd su-create
  - su username: admin@infinity.acc
  - su password: georgia123
    
-2. Then go to [[http://localhost:5000/login](http://localhost:5000/register)](http://localhost:5000/register) and create new account. Only super users can access this page.
+2. Then go to [http://localhost:5000/register](http://localhost:5000/register) and create new account. Only super users can access this page.
 
 ## Admin page
 [http://localhost:5000/admin/](http://localhost:5000/admin/)
