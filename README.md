@@ -11,8 +11,8 @@
 ![image 1](https://github.com/ImperialBreakCode/infinity-web/blob/main/images/img.png)
 ![image 2](https://github.com/ImperialBreakCode/infinity-web/blob/main/images/img1.png)
 ![image 3](https://github.com/ImperialBreakCode/infinity-web/blob/main/images/img2.png)
-====================================================================================
-![image 4](https://github.com/ImperialBreakCode/infinity-web/blob/main/images/img3.png)| ![image 4](https://github.com/ImperialBreakCode/infinity-web/blob/main/images/img4.png)
+![image 4](https://github.com/ImperialBreakCode/infinity-web/blob/main/images/img3.png)
+![image 4](https://github.com/ImperialBreakCode/infinity-web/blob/main/images/img4.png)
 
 ## Install with docker
 
